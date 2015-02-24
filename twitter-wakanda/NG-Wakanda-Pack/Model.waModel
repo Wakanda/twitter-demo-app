@@ -80,6 +80,10 @@
 					[
 						{
 							"kind" : "set",
+							"from" : "$mainModel.User.password.events.set"
+						},
+						{
+							"kind" : "set",
 							"from" : "$mainModel.User.password.events.set",
 							"userDefined" : true
 						}
@@ -97,6 +101,13 @@
 			],
 			"methods" : 
 			[
+				{
+					"name" : "performLogin",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.performLogin",
+					"userDefined" : true
+				},
 				{
 					"name" : "validatePassword",
 					"applyTo" : "entity",

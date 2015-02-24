@@ -6,7 +6,7 @@
 
 angular.module('twitter').
     service('AuthenticationService',
-    function ($wakanda) {
+    function ($wakanda, $q) {
         this.isLoggedIn = function () {
             return false;
         };
@@ -14,8 +14,6 @@ angular.module('twitter').
         this.register = function (login, password) {
             $wakanda.init().then(
                 function (ds) {
-                    // use the datastore
-                    console.log('Datastore loaded', ds);
 
                     var user = ds.User.$create({
                         login: login,
@@ -34,6 +32,23 @@ angular.module('twitter').
                 function () {
                     console.error('Error while loading datastore');
                 });
+        };
+
+        this.login = function (login, password) {
+            var defered = $q.defer();
+            $wakanda.init().then(
+                function (ds) {
+
+                    var user = ds.User.performLogin(login, password);
+                    if (!user.error)
+                        defered.resolve(user);
+                    else
+                        defered.reject(user.message);
+                },
+                function () {
+                    console.error('Error while loading datastore');
+                });
+            return defered.promise;
         };
     }
 );

@@ -6,5 +6,13 @@
 angular.module('twitter').
     controller('LoginController',
     function ($scope, AuthenticationService) {
-        AuthenticationService.register('mathieu', 'piko');
+
+        //AuthenticationService.register('mathieu', 'piko');
+        AuthenticationService.login('mathieu', 'piko').then(
+            function (user) {
+                console.log(user)
+            },
+            function (errorMessage) {
+                console.error(errorMessage);
+            });
     });

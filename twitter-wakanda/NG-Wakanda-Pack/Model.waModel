@@ -17,8 +17,8 @@
 					"pathVisible" : true,
 					"position" : 
 					{
-						"X" : 168,
-						"Y" : 49
+						"X" : 53,
+						"Y" : 26
 					}
 				}
 			},
@@ -31,8 +31,22 @@
 					"pathVisible" : true,
 					"position" : 
 					{
-						"X" : 570,
-						"Y" : 78
+						"X" : 713,
+						"Y" : 17
+					}
+				}
+			},
+			"Retweet" : 
+			{
+				"panelColor" : "#D8D8D8",
+				"panel" : 
+				{
+					"isOpen" : "true",
+					"pathVisible" : true,
+					"position" : 
+					{
+						"X" : 477,
+						"Y" : 356
 					}
 				}
 			}
@@ -59,6 +73,45 @@
 	},
 	"dataClasses" : 
 	[
+		{
+			"name" : "Retweet",
+			"className" : "Retweet",
+			"collectionName" : "RetweetCollection",
+			"scope" : "public",
+			"attributes" : 
+			[
+				{
+					"name" : "ID",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"autosequence" : true,
+					"type" : "long",
+					"indexKind" : "btree"
+				},
+				{
+					"name" : "tweet",
+					"kind" : "relatedEntity",
+					"scope" : "public",
+					"type" : "Tweet",
+					"path" : "Tweet"
+				},
+				{
+					"name" : "user",
+					"kind" : "relatedEntity",
+					"scope" : "public",
+					"type" : "User",
+					"path" : "User"
+				}
+			],
+			"key" : 
+			[
+				{
+					"name" : "ID"
+				}
+			]
+		},
 		{
 			"name" : "Tweet",
 			"className" : "Tweet",
@@ -95,6 +148,21 @@
 					"scope" : "public",
 					"type" : "date",
 					"simpleDate" : false
+				},
+				{
+					"name" : "retweetCollection",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "RetweetCollection",
+					"reversePath" : true,
+					"path" : "tweet"
+				},
+				{
+					"name" : "retweetedBy",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "UserCollection",
+					"path" : "retweetCollection.user"
 				}
 			],
 			"methods" : 
@@ -104,6 +172,13 @@
 					"applyTo" : "dataClass",
 					"scope" : "public",
 					"from" : "$mainModel.Tweet.methods.post",
+					"userDefined" : true
+				},
+				{
+					"name" : "retweet",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Tweet.methods.retweet",
 					"userDefined" : true
 				}
 			],
@@ -174,6 +249,21 @@
 					"type" : "TweetCollection",
 					"reversePath" : true,
 					"path" : "author"
+				},
+				{
+					"name" : "retweetCollection",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "RetweetCollection",
+					"reversePath" : true,
+					"path" : "user"
+				},
+				{
+					"name" : "retweetedTweets",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "TweetCollection",
+					"path" : "retweetCollection.tweet"
 				}
 			],
 			"methods" : 

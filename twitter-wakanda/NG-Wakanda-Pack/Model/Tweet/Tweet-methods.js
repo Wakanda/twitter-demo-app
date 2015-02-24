@@ -42,3 +42,25 @@ model.Tweet.methods.post = function(text, user) {
 	}
 };
 model.Tweet.methods.post.scope = "public";
+
+
+model.Tweet.methods.retweet = function(tweet, user) {
+	var dsTweet = ds.Tweet(tweet.id);
+	var dsUser = sessionStorage.currentUser;
+	
+	if (dsTweet == null)
+		return {error: 404, message: "Tweet not found"};
+		
+	if (dsUser == null || dsUser.ID != user.id)
+		return {error: 401, message: "You must be logged in"};
+		
+	var retweet = new ds.Retweet({tweet: dsTweet.ID, user: dsUser.ID});
+	retweet.save();
+	
+	return {
+		id: rewteet.ID,
+		tweetId: dsTweet.ID,
+		userId: dsUser.ID
+	};
+};
+model.Tweet.methods.retweet.scope = "public";

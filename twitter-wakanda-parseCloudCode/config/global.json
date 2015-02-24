@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "WakandaDemoApp-Twitter": {
+            "applicationId": "ygteZzN9DlTDyD4Pw0RXiDopzYGik9MWse8NvHqW", 
+            "masterKey": "H9GmDK36jtXuqw1zXHXqTZH3Cauo06mGmN00wC46"
+        }, 
+        "_default": {
+            "link": "WakandaDemoApp-Twitter"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.5"
+    }
+}

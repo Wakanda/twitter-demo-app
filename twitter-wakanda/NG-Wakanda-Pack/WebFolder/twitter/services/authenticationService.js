@@ -64,6 +64,10 @@ angular.module('twitter').
             deleteUserInLocalStorage();
         };
 
+        this.getCurrentUser = function () {
+            return $localStorage.user;
+        };
+
         function deleteUserInLocalStorage() {
             delete $localStorage.user;
         }

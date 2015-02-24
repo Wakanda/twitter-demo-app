@@ -17,8 +17,22 @@
 					"pathVisible" : true,
 					"position" : 
 					{
-						"X" : 242,
-						"Y" : 68
+						"X" : 168,
+						"Y" : 49
+					}
+				}
+			},
+			"Tweet" : 
+			{
+				"panelColor" : "#996699",
+				"panel" : 
+				{
+					"isOpen" : "true",
+					"pathVisible" : true,
+					"position" : 
+					{
+						"X" : 570,
+						"Y" : 78
 					}
 				}
 			}
@@ -45,6 +59,61 @@
 	},
 	"dataClasses" : 
 	[
+		{
+			"name" : "Tweet",
+			"className" : "Tweet",
+			"collectionName" : "TweetCollection",
+			"scope" : "public",
+			"attributes" : 
+			[
+				{
+					"name" : "ID",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"autosequence" : true,
+					"type" : "long",
+					"indexKind" : "btree"
+				},
+				{
+					"name" : "author",
+					"kind" : "relatedEntity",
+					"scope" : "public",
+					"type" : "User",
+					"path" : "User"
+				},
+				{
+					"name" : "text",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "string"
+				},
+				{
+					"name" : "date",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "date",
+					"simpleDate" : false
+				}
+			],
+			"methods" : 
+			[
+				{
+					"name" : "post",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Tweet.methods.post",
+					"userDefined" : true
+				}
+			],
+			"key" : 
+			[
+				{
+					"name" : "ID"
+				}
+			]
+		},
 		{
 			"name" : "User",
 			"className" : "User",
@@ -97,6 +166,14 @@
 					"unique" : true,
 					"type" : "string",
 					"indexKind" : "btree"
+				},
+				{
+					"name" : "tweetCollection",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "TweetCollection",
+					"reversePath" : true,
+					"path" : "author"
 				}
 			],
 			"methods" : 

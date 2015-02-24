@@ -5,6 +5,9 @@
 'use strict';
 
 angular.module('twitter').
-    controller('HomeController', function ($scope) {
+    controller('HomeController',
+    function ($scope, TweetService) {
         $scope.toto = 'Bonjour !';
+
+        //TweetService.post("hello there !");
     });

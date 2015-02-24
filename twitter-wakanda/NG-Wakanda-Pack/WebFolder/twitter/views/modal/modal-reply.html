@@ -1,0 +1,14 @@
+<div class="modal-header"><h2>Tweet to <span class="primary-color">{{originalTweet.author.username}}</span></h2></div>
+
+<div class="modal-body">
+    <div class="form-group">
+        <label for="tweet-reply-content" class="modal-form-input-header">In reply to <span>"{{originalTweet.content}}"</span></label>
+        <input type="text" class="form-control" id="tweet-reply-content" ng-model="newTweet.content" placeholder="Reply here" maxlength="140">
+        <p class="counter">{{140 - newTweet.content.length}} car.</p>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="sendreply()">Tweet</button>
+    <button class="btn" ng-click="cancelreply()">Cancel</button>
+</div>

@@ -11,18 +11,26 @@ app.config(['$stateProvider', '$urlRouterProvider',
         $urlRouterProvider.otherwise("/");
 
         $stateProvider
-            .state('home', {
+            .state('home', { // This is the default Home when user isn't logged in yet
                 url: '/',
-                templateUrl: 'views/home.html',
+                templateUrl: 'views/stream-loggedout.html',
                 controller: 'HomeController',
                 resolve: {},
-                authenticate: true
+                authenticate: false
             });
         $stateProvider
-            .state('login', {
+            .state('login', { // This is the Home displayed to registered and logged in users
                 url: '/login',
                 templateUrl: 'views/login.html',
                 controller: 'LoginController',
+                resolve: {},
+                authenticate: false
+            });
+        $stateProvider
+            .state('profile', {
+                url: '/profile',
+                templateUrl: 'views/user-profile.html',
+                controller: 'ProfileController',
                 resolve: {},
                 authenticate: false
             });

@@ -3,6 +3,11 @@
  */
 angular.module('twitter').
     controller('NavBarController',
-    function ($scope) {
+    function ($scope, AuthenticationService, $state, $rootScope) {
 
+        $scope.performLogout = function () {
+            AuthenticationService.logout();
+            $rootScope.loggedIn = false;
+            $state.go('login');
+        };
     });

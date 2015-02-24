@@ -5,7 +5,7 @@
 
 angular.module('twitter').
     controller('LoginController',
-    function ($scope, AuthenticationService, $state) {
+    function ($scope, AuthenticationService, $state, $rootScope) {
 
         $scope.login = {};
         $scope.newUser = {};
@@ -17,6 +17,7 @@ angular.module('twitter').
                 AuthenticationService.login($scope.login.username, $scope.login.password).then(
                     function (user) {
                         console.log(user);
+                        $rootScope.loggedIn = true;
                         $state.go('home');
                     },
                     function (errorMessage) {
@@ -39,6 +40,7 @@ angular.module('twitter').
                 AuthenticationService.register($scope.newUser.username,
                     $scope.newUser.passwordFirstCheck, $scope.newUser.email, $scope.newUser.description)
                     .then(function (user) {
+                        $rootScope.loggedIn = true;
                         $state.go('home');
                     },
                     function (errorMessage) {

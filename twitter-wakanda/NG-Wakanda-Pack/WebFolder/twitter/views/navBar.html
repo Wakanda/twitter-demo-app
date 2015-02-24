@@ -2,7 +2,8 @@
     <nav class="navbar navbar-default navbar-fixed-top row">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -11,16 +12,37 @@
                 <a class="navbar-brand" href="#">Twitter</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="#">Home</a>
-                    </li>
-                </ul>
-                <div class="nav navbar-nav navbar-right">
-                    <button type="button" class="btn btn-default navbar-btn navbar-btn-highlighted">Login</button>
-                    <button type="button" class="btn btn-default navbar-btn navbar-btn-discret">Register</button>
+                <div ng-if="!loggedIn">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#">Home</a>
+                        </li>
+                    </ul>
                 </div>
-            </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
+                <div ng-if="loggedIn">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#">Activity Feed</a>
+                        </li>
+                    </ul>
+                    <div class="col-sm-6 col-md-6">
+                        <form class="navbar-form">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Post a tweet">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary" type="submit">Tweet</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="nav navbar-nav navbar-right">
+                        <button type="button" class="btn btn-primary navbar-btn navbar-btn-highlighted">Profile</button>
+                        <button type="button" class="btn btn-default navbar-btn navbar-btn-discret" ng-click="performLogout()">Logout</button>
+                    </div>
+                </div>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!--/.container-fluid -->
     </nav>
 </div>

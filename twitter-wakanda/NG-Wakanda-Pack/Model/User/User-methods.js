@@ -31,3 +31,10 @@ model.User.methods.performLogout = function() {
 	sessionStorage.currentUser = null;
 };
 model.User.methods.performLogout.scope = "public";
+
+
+model.User.methods.registerInSession = function(user) {
+	var dsUser = ds.User(user.ID);
+	sessionStorage.currentUser = dsUser;
+};
+model.User.methods.registerInSession.scope = "public";

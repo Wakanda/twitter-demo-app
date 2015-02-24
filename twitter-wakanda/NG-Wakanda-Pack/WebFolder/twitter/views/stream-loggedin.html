@@ -1,80 +1,21 @@
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Twitter | Latest news feed</title>
-
-    <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/stylesheets/stylesheets-default.css">
-</head>
-
-<body>
-
-    <div class="container">
-
-        <nav class="navbar navbar-default navbar-fixed-top row">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Twitter</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="#">Activity Feed</a>
-                        </li>
-                    </ul>
-                    <div class="col-sm-6 col-md-6">
-                        <form class="navbar-form">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Post a tweet">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">Tweet</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="nav navbar-nav navbar-right">
-                        <button type="button" class="btn btn-primary navbar-btn navbar-btn-highlighted">Profile</button>
-                        <button type="button" class="btn btn-default navbar-btn navbar-btn-discret">Logout</button>
-                    </div>
-                </div><!--/.nav-collapse -->
-            </div><!--/.container-fluid -->
-        </nav>
-
-        <div class="row">
-            <div class="container col-lg-6 col-lg-offset-3 tweet-container">
-                <div class="col-lg-8 voffset10">
-                    <p class="tweet-author-display"><a href="#" alt="See full profile">Hervé Heurtault de Lammerville</a><br /><span>@hhlammerville</span></p>
-                </div>
-                <div class="col-lg-4 voffset5 text-right">
-                    <p class="tweet-datetime">2 hours ago</p>
-                </div>
-                <div class="col-lg-12 voffset5">
-                    <p class="tweet-content">This is a tweet on several lines. In case you missed it, you may handle a several line behavior using Bootstrap. Thing about responsive.</p>
-                </div>
-                <div class="col-lg-4 vbottomoffset10">
-                    <button type="button" class="btn btn-default btn-xs twitter-btn-action-retweet">
-                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 17
-                    </button>
-                    <button type="button" class="btn btn-default btn-xs twitter-btn-action-reply">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 12
-                    </button>
-                </div>
-            </div>
+<div class="row">
+    <div class="container col-lg-6 col-lg-offset-3 tweet-container">
+        <div class="col-lg-8 voffset10">
+            <p class="tweet-author-display"><a href="#" alt="See full profile">Hervé Heurtault de Lammerville</a><br /><span>@hhlammerville</span></p>
         </div>
-
+        <div class="col-lg-4 voffset5 text-right">
+            <p class="tweet-datetime">2 hours ago</p>
+        </div>
+        <div class="col-lg-12 voffset5">
+            <p class="tweet-content">This is a tweet on several lines. In case you missed it, you may handle a several line behavior using Bootstrap. Thing about responsive.</p>
+        </div>
+        <div class="col-lg-4 vbottomoffset10">
+            <button type="button" class="btn btn-default btn-xs twitter-btn-action-retweet">
+                <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> 17
+            </button>
+            <button type="button" class="btn btn-default btn-xs twitter-btn-action-reply">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 12
+            </button>
+        </div>
     </div>
-
-    <script type="text/javascript" src="../../bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-</body>
-
-</html>
+</div>

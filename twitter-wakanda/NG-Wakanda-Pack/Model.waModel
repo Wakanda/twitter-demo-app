@@ -295,6 +295,13 @@
 					"userDefined" : true
 				},
 				{
+					"name" : "registerInSession",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.registerInSession",
+					"userDefined" : true
+				},
+				{
 					"name" : "validatePassword",
 					"applyTo" : "entity",
 					"scope" : "publicOnServer",

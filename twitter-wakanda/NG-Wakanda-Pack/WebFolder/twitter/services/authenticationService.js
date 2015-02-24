@@ -6,7 +6,7 @@
 
 angular.module('twitter').
     service('AuthenticationService',
-    function ($wakanda, $q, $localStorage) {
+    function ($wakanda, $q, $localStorage, $rootScope) {
         this.isLoggedIn = function () {
             return $localStorage.user !== undefined && $localStorage.user !== null;
         };
@@ -28,8 +28,16 @@ angular.module('twitter').
                     user.$save().then(
                         function (data) {
                             console.log('New user saved', data, user);
-                            saveUserInLocalStorage(user);
-                            defered.resolve(user); //FIXME - we need user id and setting currentUser in session wakanda side
+                            var cleanUser = {
+                                id: user.ID,
+                                login: user.login,
+                                email: user.email,
+                                cleanName: user.cleanName
+                            };
+
+                            ds.User.registerInSession(user);
+                            saveUserInLocalStorage(cleanUser);
+                            defered.resolve(cleanUser);
                         },
                         function (data) {
                             console.error('Error while saving user', data);
@@ -69,7 +77,6 @@ angular.module('twitter').
                     ds.User.performLogout();
                 }
             );
-            $rootScope.loggedIn = false;
             deleteUserInLocalStorage();
         };
 

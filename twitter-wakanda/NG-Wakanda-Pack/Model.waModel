@@ -264,6 +264,18 @@
 					"scope" : "public",
 					"type" : "TweetCollection",
 					"path" : "retweetCollection.tweet"
+				},
+				{
+					"name" : "description",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "string"
+				},
+				{
+					"name" : "cleanName",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "string"
 				}
 			],
 			"methods" : 

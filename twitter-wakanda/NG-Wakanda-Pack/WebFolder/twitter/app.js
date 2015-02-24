@@ -13,10 +13,10 @@ app.config(['$stateProvider', '$urlRouterProvider',
         $stateProvider
             .state('home', { // This is the default Home when user isn't logged in yet
                 url: '/',
-                templateUrl: 'views/stream-loggedout.html',
+                templateUrl: 'views/stream-loggedin.html',
                 controller: 'HomeController',
                 resolve: {},
-                authenticate: false
+                authenticate: true
             });
         $stateProvider
             .state('login', { // This is the Home displayed to registered and logged in users

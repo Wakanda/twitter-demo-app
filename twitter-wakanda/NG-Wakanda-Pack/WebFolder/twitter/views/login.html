@@ -1,108 +1,68 @@
-<!DOCTYPE html>
+<div class="row">
+    <div class="container col-lg-6">
+        <h2>Login</h2>
 
-<html lang="en">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Twitter | Latest news feed</title>
-
-    <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/stylesheets/stylesheets-default.css">
-</head>
-
-<body>
-
-    <div class="container">
-
-        <nav class="navbar navbar-default navbar-fixed-top row">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Twitter</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="#">Activity Feed</a>
-                        </li>
-                    </ul>
-                    <div class="col-sm-6 col-md-6">
-                        <form class="navbar-form">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Post a tweet">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">Tweet</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="nav navbar-nav navbar-right">
-                        <button type="button" class="btn btn-primary navbar-btn navbar-btn-highlighted">Profile</button>
-                        <button type="button" class="btn btn-default navbar-btn navbar-btn-discret">Logout</button>
-                    </div>
-                </div><!--/.nav-collapse -->
-            </div><!--/.container-fluid -->
-        </nav>
-
-        <div class="row">
-            <div class="container col-lg-6">
-                <div class="modal-header"><h2>Login</h2></div>
-
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="login-identifier">Email or username</label>
-                        <input type="email" class="form-control" id="login-identifier" ng-model="newUser.identifier" placeholder="eg. @hhlammerville, herve@twitter.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" class="form-control" ng-model="newUser.password" id="login-password">
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-primary" ng-click="login()">Login</button>
-                    <button class="btn" ng-click="cancellogin()">Cancel</button>
-                </div>
-            </div>
-            <div class="container col-lg-6">
-                <div class="modal-header"><h2>You're 2 seconds from the dream!</h2></div>
-
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="register-username">Choose a cool username</label>
-                        <input type="text" class="form-control" id="register-username" ng-model="newUser.username" placeholder="eg. @hhlammerville, @ilovewakanda">
-                    </div>
-                    <div class="form-group">
-                        <label for="register-email">Enter your email address</label>
-                        <input type="email" class="form-control" id="register-email" ng-model="newUser.email" placeholder="eg. herve@domain.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="register-password">Create a fun but safe password <i>- and type it twice, it's always better!</i></label>
-                        <input type="password" class="form-control" ng-model="newUser.passwordFirstCheck" id="register-password" placeholder="Password">
-                        <input type="password" class="form-control voffset5" ng-model="newUser.passwordSecondCheck" placeholder="Once gain!">
-                    </div>
-                    <div class="form-group">
-                        <label for="register-description">Make your subscribers addict with a lovely description</label>
-                        <textarea type="text" class="form-control" id="register-description" rows="3" ng-model="newUser.description" placeholder="eg. I'm 22 yo & I'm keen on developing apps using Wakanda tools - ok this is not the most objective part of the form."></textarea>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-primary" ng-click="register()">{{newUser.username}}, make the dream happen!</button>
-                    <button class="btn" ng-click="cancelregister()">Cancel</button>
-                </div>
-            </div>
+        <div class="alert alert-danger alert-dismissible" role="alert" ng-show="loginError != null">
+            <button type="button" class="close" aria-label="Close" ng-click="loginError = null">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{loginError}}
         </div>
 
+        <div class="form-group">
+            <label for="login-identifier">Username</label>
+
+            <div class="input-group">
+                <div class="input-group-addon">@</div>
+                <input type="text" class="form-control" id="login-identifier" ng-model="login.username"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" class="form-control" ng-model="login.password" id="login-password"/>
+        </div>
+
+        <button class="btn btn-primary" ng-click="performLogin()">Login</button>
+        <button class="btn btn-default" ng-click="cancelLogin()">Cancel</button>
     </div>
+    <div class="container col-lg-6">
+        <h2>You're 2 seconds from the dream!</h2>
+        <div class="alert alert-danger alert-dismissible" role="alert" ng-show="registerError != null">
+            <button type="button" class="close" aria-label="Close" ng-click="registerError = null">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{registerError}}
+        </div>
 
-    <script type="text/javascript" src="../../bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-</body>
+        <div class="form-group">
+            <label for="register-username">Choose a cool username</label>
 
-</html>
+            <div class="input-group">
+                <div class="input-group-addon">@</div>
+                <input type="text" class="form-control" id="register-username" ng-model="newUser.username"
+                       placeholder="eg. @hhlammerville, @ilovewakanda"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="register-email">Enter your email address</label>
+            <input type="email" class="form-control" id="register-email" ng-model="newUser.email"
+                   placeholder="eg. herve@domain.com"/>
+        </div>
+        <div class="form-group">
+            <label for="register-password">Enter your password, twice</label>
+            <input type="password" class="form-control" ng-model="newUser.passwordFirstCheck" id="register-password"
+                   placeholder="Password">
+            <input type="password" class="form-control voffset5" ng-model="newUser.passwordSecondCheck"
+                   placeholder="Once gain!">
+        </div>
+        <div class="form-group">
+            <label for="register-description">Make your subscribers addict with a lovely description</label>
+                <textarea type="text" class="form-control" id="register-description" rows="3"
+                          ng-model="newUser.description"
+                          placeholder="eg. I'm 22 yo & I'm keen on developing apps using Wakanda tools - ok this is not the most objective part of the form."></textarea>
+        </div>
+
+        <button class="btn btn-primary" ng-click="performRegister()">Regiser !</button>
+        <button class="btn btn-default" ng-click="cancelRegister()">Cancel</button>
+    </div>
+</div>

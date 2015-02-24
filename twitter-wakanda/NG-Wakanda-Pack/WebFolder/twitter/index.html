@@ -4,11 +4,14 @@
     <meta charset="utf-8">
     <title>Twitter</title>
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./views/assets/stylesheets/stylesheets-default.css">
 
 </head>
 <body>
-<ng-include src="'views/navBar.html'"></ng-include>
-<div ui-view></div>
+<div class="container">
+    <ng-include src="'views/navBar.html'"></ng-include>
+    <div ui-view></div>
+</div>
 </body>
 
 <script src="/bower_components/angular/angular.min.js"></script>

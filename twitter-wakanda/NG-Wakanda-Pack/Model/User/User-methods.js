@@ -16,7 +16,8 @@ model.User.methods.performLogin = function(login, password) {
 			return {
 				id: user.ID,
 				login: user.login,
-				email: user.email
+				email: user.email,
+				cleanName: user.cleanName
 			};
 		}
 		else

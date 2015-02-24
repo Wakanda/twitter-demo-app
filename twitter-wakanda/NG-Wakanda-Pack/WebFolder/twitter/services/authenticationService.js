@@ -6,9 +6,9 @@
 
 angular.module('twitter').
     service('AuthenticationService',
-    function ($wakanda, $q) {
+    function ($wakanda, $q, $localStorage) {
         this.isLoggedIn = function () {
-            return false;
+            return $localStorage.user !== undefined && $localStorage.user !== null;
         };
 
         this.register = function (login, password) {
@@ -41,7 +41,10 @@ angular.module('twitter').
 
                     var user = ds.User.performLogin(login, password);
                     if (!user.error)
+                    {
+                        saveUserInLocalStorage(user);
                         defered.resolve(user);
+                    }
                     else
                         defered.reject(user.message);
                 },
@@ -50,5 +53,23 @@ angular.module('twitter').
                 });
             return defered.promise;
         };
+
+        this.logout = function () {
+            $wakanda.init().then(
+                function (ds) {
+                    ds.User.performLogout();
+                }
+            );
+            $rootScope.loggedIn = false;
+            deleteUserInLocalStorage();
+        };
+
+        function deleteUserInLocalStorage() {
+            delete $localStorage.user;
+        }
+
+        function saveUserInLocalStorage(user) {
+            $localStorage.user = user;
+        }
     }
 );

@@ -7,6 +7,7 @@
 
 </head>
 <body>
+<ng-include src="'views/navBar.html'"></ng-include>
 <div ui-view></div>
 </body>
 
@@ -15,11 +16,13 @@
 <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="/bower_components/ngstorage/ngStorage.min.js"></script>
 
 <script src="./app.js"></script>
 
 <script src="./controllers/homeController.js"></script>
 <script src="./controllers/loginController.js"></script>
+<script src="./controllers/navBarController.js"></script>
 
 <script src="./services/authenticationService.js"></script>
 

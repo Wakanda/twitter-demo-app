@@ -24,3 +24,9 @@ model.User.methods.performLogin = function(login, password) {
 	}
 };
 model.User.methods.performLogin.scope = "public";
+
+
+model.User.methods.performLogout = function() {
+	sessionStorage.currentUser = null;
+};
+model.User.methods.performLogout.scope = "public";

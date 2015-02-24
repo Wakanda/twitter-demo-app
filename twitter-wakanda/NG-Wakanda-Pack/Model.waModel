@@ -109,6 +109,13 @@
 					"userDefined" : true
 				},
 				{
+					"name" : "performLogout",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.performLogout",
+					"userDefined" : true
+				},
+				{
 					"name" : "validatePassword",
 					"applyTo" : "entity",
 					"scope" : "publicOnServer",

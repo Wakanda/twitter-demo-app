@@ -5,14 +5,15 @@
 
 angular.module('twitter').
     controller('LoginController',
-    function ($scope, AuthenticationService) {
+    function ($scope, AuthenticationService, $state) {
 
         //AuthenticationService.register('mathieu', 'piko');
-        AuthenticationService.login('mathieu', 'piko').then(
-            function (user) {
-                console.log(user)
-            },
-            function (errorMessage) {
-                console.error(errorMessage);
-            });
+        //AuthenticationService.login('mathieu', 'piko').then(
+        //    function (user) {
+        //        console.log(user);
+        //        $state.go('home');
+        //    },
+        //    function (errorMessage) {
+        //        console.error(errorMessage);
+        //    });
     });

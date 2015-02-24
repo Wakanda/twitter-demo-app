@@ -1,7 +1,8 @@
 var app = angular.module('twitter', [
     'wakanda',
     'ui.router',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngStorage'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider',

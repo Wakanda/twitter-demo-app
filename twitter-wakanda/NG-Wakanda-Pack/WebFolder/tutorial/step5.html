@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Angular-Wakanda Step 5 - Getting related Data out of the box</title>
+
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-wakanda/angular-wakanda.min.js"></script>
+  <script src="./scripts/step5.js"></script>
+</head>
+
+<body ng-app="step5">
+  <h1>Angular-Wakanda Step 5 - Getting related Data out of the box</h1>
+
+  <section ng-controller="Controller">
+    <p>
+      {{countries.$totalCount}} countries found:
+      <select ng-model="country" ng-options="c.name for c in countries">
+        <option value="">-- select a country to see its related companies --</option>
+      </select>
+    </p>
+    <div ng-show="country">
+      <p>Its country code is <strong>{{country.code}}</strong></p>
+      <p>
+        {{country.companies.$totalCount}} companies are located there:
+        <select ng-model="company" ng-options="c.name for c in country.companies">
+          <option value="">-- select a company to see its details --</option>
+        </select>
+      </p>
+      <p ng-show="company">Its manager name is <strong>{{company.managerName}}</strong></p>
+    </div>
+  </section>
+
+</body>
+</html>

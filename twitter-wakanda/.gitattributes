@@ -1,0 +1,34 @@
+
+# Explicitly declare text files we want to always be normalized and converted
+# to native line endings on checkout.
+
+*.waSolution text
+*.waProject text
+*.waModel text
+*.waDirectory text
+*.waPerm text
+*.waSettings text
+*.waPreferences text
+*.WakTDef text
+
+*.js text
+*.json text
+*.css text
+*.scss text
+*.less text
+*.html text
+*.xml text
+
+
+# Explicitly declare binary files
+*.waData binary
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+
+
+# Declare files that will always have CRLF line endings on checkout.
+text eol=crlf

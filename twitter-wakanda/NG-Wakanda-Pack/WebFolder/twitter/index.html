@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="twitter">
+<head>
+    <meta charset="utf-8">
+    <title>Twitter</title>
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div ui-view></div>
+</body>
+
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/bower_components/angular-wakanda/angular-wakanda.min.js"></script>
+<script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<script src="./app.js"></script>
+
+<script src="./controllers/homeController.js"></script>
+<script src="./controllers/loginController.js"></script>
+
+<script src="./services/authenticationService.js"></script>
+
+</html>

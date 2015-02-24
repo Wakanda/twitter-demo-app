@@ -1,0 +1,45 @@
+
+body {
+	overflow:hidden;
+}
+
+button {
+	border:none;
+	background-color:inherit;
+}
+
+.page-header {
+	margin: 0px;
+	top:0px; 
+}
+
+.page-header tr {
+	display: table-row; 
+	vertical-align: middle;
+}
+.page-header th {
+	display: table-cell; 
+	vertical-align: middle;
+	width: 33%;
+}
+
+.panel-default tbody {
+	display:block; 
+	overflow-y:auto; 
+	bottom:0px; 
+	right:0px; 	
+}
+
+.panel-default tr {
+	display:block; 
+	height:40px; 
+	right:0px; 
+}
+.panel-default td {
+	display:block; 
+	height:40px; 
+	right:0px; 
+}
+.panel-default {bottom: 0px;left:0px; right:0px; top:0px;}
+
+.header.h1 {text-align: center}

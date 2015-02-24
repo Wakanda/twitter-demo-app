@@ -1,0 +1,9 @@
+﻿{
+	"applicationID": "1467",
+	"domain": "ng-wakanda-pack.waktest.com",
+	"remoteRepository": "http://scmadmin:scmadmin@us-repo-1.waktest.com:8080/scm/git/r-1467",
+	"repository": "/Users/alexandremorgaut/git/AMorgaut/NG-Wakanda-Pack/.git",
+	"worktree": "/Users/alexandremorgaut/git/AMorgaut/NG-Wakanda-Pack/",
+	"isSolutionCommited": "true",
+	"commitCount": "28"
+}

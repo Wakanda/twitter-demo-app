@@ -1,0 +1,116 @@
+
+{
+	"toJSON" : true,
+	"extraProperties" : 
+	{
+		"version" : "2",
+		"classes" : 
+		{
+			"User" : 
+			{
+				"panelColor" : "#C3D69B",
+				"isMinimized" : "false",
+				"methodInhVisible" : "true",
+				"panel" : 
+				{
+					"isOpen" : "true",
+					"pathVisible" : true,
+					"position" : 
+					{
+						"X" : 242,
+						"Y" : 68
+					}
+				}
+			}
+		},
+		"model" : 
+		{
+			"scriptMode" : "manual",
+			"workspaceLeft" : 0,
+			"workspaceTop" : 0,
+			"relationCurve" : 
+			{
+				"run" : true,
+				"mode" : 1
+			},
+			"lastScriptLocation" : 
+			{
+				"User" : 
+				{
+					"events" : "User/User-events.js",
+					"method" : "User/User-methods.js"
+				}
+			}
+		}
+	},
+	"dataClasses" : 
+	[
+		{
+			"name" : "User",
+			"className" : "User",
+			"collectionName" : "UserCollection",
+			"scope" : "public",
+			"attributes" : 
+			[
+				{
+					"name" : "ID",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"autosequence" : true,
+					"type" : "long",
+					"indexKind" : "btree"
+				},
+				{
+					"name" : "login",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"type" : "string",
+					"indexKind" : "btree"
+				},
+				{
+					"name" : "password",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "string",
+					"events" : 
+					[
+						{
+							"kind" : "set",
+							"from" : "$mainModel.User.password.events.set",
+							"userDefined" : true
+						}
+					]
+				},
+				{
+					"name" : "email",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"type" : "string",
+					"indexKind" : "btree"
+				}
+			],
+			"methods" : 
+			[
+				{
+					"name" : "validatePassword",
+					"applyTo" : "entity",
+					"scope" : "publicOnServer",
+					"from" : "$mainModel.User.entityMethods.validatePassword",
+					"userDefined" : true
+				}
+			],
+			"key" : 
+			[
+				{
+					"name" : "ID"
+				}
+			]
+		}
+	]
+}

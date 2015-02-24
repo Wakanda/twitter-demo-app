@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="Contact">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Contact Demo</title>
+
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body ng-controller="Controller" class="main">
+
+  <table class="table panel page-header"><tr>
+    <th>
+      <!--Header Left: Back Button-->
+      <button ng-click="back()" ng-show="panel > 0">&lt; {{panels[panel - 1]}}</button>&nbsp;
+    </th>
+    <th>
+      <!--Header Middle: Title-->
+      <h1>{{panels[panel]}}</h1>
+    </th>
+    <th>
+      <!--Header Right: Add/Modify Button-->
+      &nbsp;
+      <button ng-click="createGroup()" ng-show="panel === 0">Create</button>
+      <button ng-click="addContact()" ng-show="panel === 1">Add</button>
+      <button ng-click="next()" ng-show="panel === 2">Modify</button>
+    </th>
+  </tr></table>
+
+  <div class="panel panel-default" ng-show="panel === 0">
+    <table class="table table-striped table-hover">
+      <tbody>
+        <tr class="{{(!group) && 'info'}}">
+          <td ng-click="setCurrent('group')">All Contacts</td>
+        </tr>
+        <tr ng-repeat="g in groups" class="{{(g === group) && 'info'}}">
+          <td ng-click="setCurrent('group', g)">{{g.name}}</td>
+        </tr>
+      <tbody>
+    </table>
+  </div>
+
+  <div class="panel panel-default" ng-show="panel === 1">
+    <h2  class="panel-heading">{{group.name || "All Contacts"}} <span class="badge">{{group.contacts.$totalCount}}</span></h2>
+
+    <table class="table table-striped table-hover">
+      <tbody when-scrolled="group.contacts.$more()">
+        <tr ng-repeat="c in group.contacts" class="{{(c === contact) && 'info'}}">
+          <td ng-click="setCurrent('contact', c)">{{c.name}}</td>
+        </tr>
+      <tbody>
+    </table>
+  </div>
+
+  <div class="panel panel-default" ng-show="panel === 2">
+    <div  class="panel-body">
+      <h2>{{contact.name}}</h2><br>
+      <label>Group</label> {{contact.groupName}}<br>
+      <label>Mobile</label> {{contact.mobile}}
+    </div>
+  </div>
+
+  <div class="panel panel-default" ng-show="panel === 3">
+    <h2  class="panel-heading">{{group.name}}</h2>
+
+    <form  class="panel-body" ng-submit="saveContact()">
+      <label>name</label> <input ng-model="contact.name" required><br>
+      <div ng-show="!group">
+        <label>Group</label> 
+        <select ng-model="contact.group" ng-options="c.name for c in groups" required>
+          <option value="">-- select a group --</option>
+        </select><br>
+      </div>
+      <label>mobile</label> <input ng-model="contact.mobile">
+      <input type="submit">
+    </form>
+  </div>
+
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-wakanda/angular-wakanda.min.js"></script>
+
+  <script src="./app.js"></script>
+</body>
+</html>

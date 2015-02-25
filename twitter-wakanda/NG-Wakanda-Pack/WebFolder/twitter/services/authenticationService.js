@@ -75,7 +75,8 @@ angular.module('twitter').
         this.updateUser = function (cleanName, description) {
             $wakanda.init().then(
                 function (ds) {
-                    var user = AuthenticationService.getCurrentUser();
+                    var user = $localStorage.user;
+                    console.log('User active: ', user);
                     ds.User.performProfileUpdate(user, null, null, description, cleanName);
                 }
             );

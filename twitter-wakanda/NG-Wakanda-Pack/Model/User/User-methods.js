@@ -45,39 +45,25 @@ model.User.methods.registerInSession.scope = "public";
  * Update a user profile. User modified must be the one currently authenticated.
  */
 model.User.methods.performProfileUpdate = function(user, login, email, description, cleanName) {
-	var dsUser = sessionStorage.currentUser;
+	var dsUser = ds.User(user.id);
+
+	if (login != null && login.length > 3) {
+		dsUser.login = login;
+	}
 	
-	if (dsUser !== null && dsUser.ID == user.id) // Just checking whether the client-side and server-side logged in users are the same instance
-	{
-		if (login != null && login.length > 3) {
-			dsUser.login = login;
-		}
-		
-		if (password != null && password.length > 3) {
-			dsUser.password = password;
-		}
-		
-		if (email != null && email.length > 5) {
-			dsUser.email = email;
-		}
-		
-		if (description != null && cleanName.length > 10) {
-			dsUser.description = description;
-		}
-		
-		if (cleanName != null && cleanName.length > 3) {
-			dsUser.cleanName = cleanName;
-		}
-		
-		dsUser.save();
-		return { code: 200, message: "Profile successfully updated." };
+	if (email != null && email.length > 5) {
+		dsUser.email = email;
 	}
-	else
-	{
-		return {
-			error: 401,
-			message: "You must be logged in"
-		};
+	
+	if (description != null && description.length > 10) {
+		dsUser.description = description;
 	}
+	
+	if (cleanName != null && cleanName.length > 3) {
+		dsUser.cleanName = cleanName;
+	}
+	
+	dsUser.save();
+	return { code: 200, message: "Profile successfully updated." };
 };
 model.User.methods.performProfileUpdate.scope = "public";

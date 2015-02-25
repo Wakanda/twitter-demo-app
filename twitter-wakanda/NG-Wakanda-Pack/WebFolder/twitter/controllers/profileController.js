@@ -12,12 +12,15 @@ angular.module('twitter').
         $scope.init();
 
         $scope.$watch('user.cleanName', function() {
+            console.log('CleanName updated');
             var localCurrentUser = AuthenticationService.getCurrentUser();
             localCurrentUser.cleanName = $scope.user.cleanName;
+            AuthenticationService.updateUser($scope.user.cleanName, null);
         });
 
         $scope.$watch('user.description', function() {
             var localCurrentUser = AuthenticationService.getCurrentUser();
             localCurrentUser.description = $scope.user.description;
+            AuthenticationService.updateUser(null, $scope.user.description);
         });
     });

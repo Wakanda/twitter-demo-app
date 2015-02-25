@@ -33,14 +33,6 @@ model.User.methods.performLogout = function() {
 };
 model.User.methods.performLogout.scope = "public";
 
-
-model.User.methods.registerInSession = function(user) {
-	var dsUser = ds.User(user.ID);
-	sessionStorage.currentUser = dsUser;
-};
-model.User.methods.registerInSession.scope = "public";
-
-
 /*
  * Update a user profile. User modified must be the one currently authenticated.
  */
@@ -66,4 +58,30 @@ model.User.methods.performProfileUpdate = function(user, login, email, descripti
 	dsUser.save();
 	return { code: 200, message: "Profile successfully updated." };
 };
+
+model.User.methods.register = function (user) {
+	if (user.login && user.password && user.email) {
+        dsUser = new ds.User();
+        dsUser.login = user.login;
+        dsUser.email = user.email;
+        dsUser.password = directory.computeHA1(dsUser.ID, user.password);
+        dsUser.description = user.description;
+        dsUser.cleanName = user.login;
+
+        dsUser.save();
+
+        sessionStorage.currentUser = dsUser;
+
+        return {
+            id: dsUser.ID,
+            login: dsUser.login,
+            email: dsUser.email,
+            cleanName: dsUser.cleanName,
+            description: dsUser.description
+        };
+    }
+    else
+        return {error: 400, message: "Login, password and email are mandatory"};
+};
+model.User.methods.register.scope = "public";
 model.User.methods.performProfileUpdate.scope = "public";

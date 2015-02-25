@@ -283,23 +283,7 @@
 					"name" : "password",
 					"kind" : "storage",
 					"scope" : "public",
-					"type" : "string",
-					"events" : 
-					[
-						{
-							"kind" : "set",
-							"from" : "$mainModel.User.password.events.set"
-						},
-						{
-							"kind" : "set",
-							"from" : "$mainModel.User.password.events.set"
-						},
-						{
-							"kind" : "set",
-							"from" : "$mainModel.User.password.events.set",
-							"userDefined" : true
-						}
-					]
+					"type" : "string"
 				},
 				{
 					"name" : "email",
@@ -393,10 +377,17 @@
 					"userDefined" : true
 				},
 				{
-					"name" : "registerInSession",
+					"name" : "performProfileUpdate",
+					"applyTo" : "dataClass",
+					"scope" : "publicOnServer",
+					"from" : "$mainModel.User.methods.performProfileUpdate",
+					"userDefined" : true
+				},
+				{
+					"name" : "register",
 					"applyTo" : "dataClass",
 					"scope" : "public",
-					"from" : "$mainModel.User.methods.registerInSession",
+					"from" : "$mainModel.User.methods.register",
 					"userDefined" : true
 				},
 				{

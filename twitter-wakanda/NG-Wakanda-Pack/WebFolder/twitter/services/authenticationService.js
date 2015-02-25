@@ -72,6 +72,15 @@ angular.module('twitter').
             return defered.promise;
         };
 
+        this.updateUser = function (cleanName, description) {
+            $wakanda.init().then(
+                function (ds) {
+                    var user = AuthenticationService.getCurrentUser();
+                    ds.User.performProfileUpdate(user, null, null, description, cleanName);
+                }
+            );
+        };
+
         this.logout = function () {
             $wakanda.init().then(
                 function (ds) {

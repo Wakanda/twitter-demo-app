@@ -17,7 +17,8 @@ model.User.methods.performLogin = function(login, password) {
 				id: user.ID,
 				login: user.login,
 				email: user.email,
-				cleanName: user.cleanName
+				cleanName: user.cleanName,
+				description: user.description
 			};
 		}
 		else
@@ -43,55 +44,33 @@ model.User.methods.registerInSession.scope = "public";
 /*
  * Update a user profile. User modified must be the one currently authenticated.
  */
-model.User.methods.performProfileUpdate = function(user, login, password, email, description, cleanName) {
+model.User.methods.performProfileUpdate = function(user, login, email, description, cleanName) {
 	var dsUser = sessionStorage.currentUser;
 	
-	if (dsUser !== null && dsUser.ID == user.id) //Just checking whether the client-side and server-side logged in users are the same instance
+	if (dsUser !== null && dsUser.ID == user.id) // Just checking whether the client-side and server-side logged in users are the same instance
 	{
-		var error = null;
-		
 		if (login != null && login.length > 3) {
 			dsUser.login = login;
-		}
-		else {
-			error = { code: 400, message: "Login length must be at least 3 characters." };
 		}
 		
 		if (password != null && password.length > 3) {
 			dsUser.password = password;
 		}
-		else {
-			error = { code: 400, message: "Password length must be at least 3 characters." };
-		}
 		
 		if (email != null && email.length > 5) {
 			dsUser.email = email;
-		}
-		else {
-			error = { code: 400, message: "Email length must be at least 5 characters." };
 		}
 		
 		if (description != null && cleanName.length > 10) {
 			dsUser.description = description;
 		}
-		else {
-			error = { code: 400, message: "Description length must be at least 10 characters." };
-		}
 		
 		if (cleanName != null && cleanName.length > 3) {
 			dsUser.cleanName = cleanName;
 		}
-		else {
-			error = { code: 400, message: "CleanName length must be at least 3 characters." };
-		}
 		
-		if (error == null) { // No error found, user modifications will be saved
-			dsUser.save();
-			return { code: 200, message: "Profile successfully updated." };
-		}
-		else { // An unexpected error happened, must be fixed before processing to profile update
-			return error;
-		}
+		dsUser.save();
+		return { code: 200, message: "Profile successfully updated." };
 	}
 	else
 	{
@@ -101,3 +80,4 @@ model.User.methods.performProfileUpdate = function(user, login, password, email,
 		};
 	}
 };
+model.User.methods.performProfileUpdate.scope = "public";

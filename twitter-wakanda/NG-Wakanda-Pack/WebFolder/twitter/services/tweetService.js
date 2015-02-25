@@ -15,6 +15,18 @@ angular.module('twitter').
             });
 
             return defered.promise;
-        }
+        };
+
+        this.userHomeFeed = function () {
+            var defered = $q.defer();
+
+            $wakanda.init().then(function (ds) {
+                var user = AuthenticationService.getCurrentUser();
+                var tweets = ds.Tweet.homeTweetFeed(user);
+                console.log('homeTweetFeed', tweets);
+            });
+
+            return defered.promise;
+        };
     }
 );

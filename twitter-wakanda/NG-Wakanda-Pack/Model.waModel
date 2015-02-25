@@ -17,8 +17,8 @@
 					"pathVisible" : true,
 					"position" : 
 					{
-						"X" : 53,
-						"Y" : 26
+						"X" : 48,
+						"Y" : 37
 					}
 				}
 			},
@@ -31,8 +31,8 @@
 					"pathVisible" : true,
 					"position" : 
 					{
-						"X" : 713,
-						"Y" : 17
+						"X" : 780,
+						"Y" : 26
 					}
 				}
 			},
@@ -45,8 +45,22 @@
 					"pathVisible" : true,
 					"position" : 
 					{
-						"X" : 477,
-						"Y" : 356
+						"X" : 527,
+						"Y" : 329
+					}
+				}
+			},
+			"Follow" : 
+			{
+				"panelColor" : "#B8CCE4",
+				"panel" : 
+				{
+					"isOpen" : "true",
+					"pathVisible" : true,
+					"position" : 
+					{
+						"X" : 535,
+						"Y" : 536
 					}
 				}
 			}
@@ -67,12 +81,55 @@
 				{
 					"events" : "User/User-events.js",
 					"method" : "User/User-methods.js"
+				},
+				"Tweet" : 
+				{
+					"method" : "Tweet/Tweet-methods.js"
 				}
 			}
 		}
 	},
 	"dataClasses" : 
 	[
+		{
+			"name" : "Follow",
+			"className" : "Follow",
+			"collectionName" : "FollowCollection",
+			"scope" : "public",
+			"attributes" : 
+			[
+				{
+					"name" : "ID",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"autosequence" : true,
+					"type" : "long",
+					"indexKind" : "btree"
+				},
+				{
+					"name" : "user",
+					"kind" : "relatedEntity",
+					"scope" : "public",
+					"type" : "User",
+					"path" : "User"
+				},
+				{
+					"name" : "followedUser",
+					"kind" : "relatedEntity",
+					"scope" : "public",
+					"type" : "User",
+					"path" : "User"
+				}
+			],
+			"key" : 
+			[
+				{
+					"name" : "ID"
+				}
+			]
+		},
 		{
 			"name" : "Retweet",
 			"className" : "Retweet",
@@ -168,6 +225,13 @@
 			"methods" : 
 			[
 				{
+					"name" : "homeTweetFeed",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Tweet.methods.homeTweetFeed",
+					"userDefined" : true
+				},
+				{
 					"name" : "post",
 					"applyTo" : "dataClass",
 					"scope" : "public",
@@ -228,6 +292,10 @@
 						},
 						{
 							"kind" : "set",
+							"from" : "$mainModel.User.password.events.set"
+						},
+						{
+							"kind" : "set",
 							"from" : "$mainModel.User.password.events.set",
 							"userDefined" : true
 						}
@@ -276,6 +344,36 @@
 					"kind" : "storage",
 					"scope" : "public",
 					"type" : "string"
+				},
+				{
+					"name" : "followCollection",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "FollowCollection",
+					"reversePath" : true,
+					"path" : "user"
+				},
+				{
+					"name" : "followCollection_1",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "FollowCollection",
+					"reversePath" : true,
+					"path" : "followedUser"
+				},
+				{
+					"name" : "follows",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "UserCollection",
+					"path" : "followCollection.followedUser"
+				},
+				{
+					"name" : "followers",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "UserCollection",
+					"path" : "followCollection_1.user"
 				}
 			],
 			"methods" : 

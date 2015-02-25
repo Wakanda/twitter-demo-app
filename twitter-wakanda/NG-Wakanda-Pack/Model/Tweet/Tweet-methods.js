@@ -64,3 +64,28 @@ model.Tweet.methods.retweet = function(tweet, user) {
 	};
 };
 model.Tweet.methods.retweet.scope = "public";
+
+
+model.Tweet.methods.homeTweetFeed = function(user) {
+	dsUser = sessionStorage.currentUser;
+	
+	if (dsUser == null || dsUser.ID != user.id)
+		return {error: 404, message: "You must be logged in"};
+		
+	dsUser = ds.User(user.id);
+		
+	var tweets = dsUser.tweetCollection;
+	var follows = dsUser.follows;
+	follows.forEach(function (followedUser) {
+		tweets = tweets.or(followedUser.tweetCollection);
+		tweets = tweets.or(followedUser.retweetedTweets);
+	});
+
+    var tweetArray = [];
+    tweets.forEach(function (t) {
+        tweetArray.push(t);
+    });
+	
+	return tweetArray;
+};
+model.Tweet.methods.homeTweetFeed.scope = "public";

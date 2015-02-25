@@ -10,4 +10,7 @@ angular.module('twitter').
         $scope.toto = 'Bonjour !';
 
         //TweetService.post("hello there !");
+        var data = TweetService.userHomeFeed().then(function (data) {
+            console.log('user home feed success', data);
+        });
     });

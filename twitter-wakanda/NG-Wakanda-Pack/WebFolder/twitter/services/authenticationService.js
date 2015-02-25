@@ -17,7 +17,7 @@ angular.module('twitter').
             $wakanda.init().then(
                 function (ds) {
 
-                    var user = ds.User.$create({
+                    var cleanUser = ds.User.register({
                         login: login,
                         password: password,
                         email: email,
@@ -25,25 +25,16 @@ angular.module('twitter').
                         cleanName: login
                     });
 
-                    user.$save().then(
-                        function (data) {
-                            console.log('New user saved', data, user);
-                            var cleanUser = {
-                                id: user.ID,
-                                login: user.login,
-                                email: user.email,
-                                cleanName: user.cleanName
-                            };
+                    if (!cleanUser.error) {
+                        console.log('New user saved', cleanUser);
+                        saveUserInLocalStorage(cleanUser);
+                        defered.resolve(cleanUser);
+                    }
+                    else {
+                        console.error('Error while saving user', cleanUser.message);
+                        defered.reject(cleanUser.message);
+                    }
 
-                            ds.User.registerInSession(user);
-                            saveUserInLocalStorage(cleanUser);
-                            defered.resolve(cleanUser);
-                        },
-                        function (data) {
-                            console.error('Error while saving user', data);
-                            defered.reject(data);
-                        }
-                    );
                 },
                 function () {
                     console.error('Error while loading datastore');

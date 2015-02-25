@@ -11,12 +11,12 @@ angular.module('twitter').
             if ($scope.tweetText.length > 0) {
                 TweetService.post($scope.tweetText).then(
                     function (tweet) {
-                        console.log('tweet post success', tweet);
                         $scope.tweetText = "";
+                        $rootScope.$broadcast('postedTweet', tweet);
                     },
                     function (data) {
                         console.error('tweet post', data);
-                    })
+                    });
             }
         };
 

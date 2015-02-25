@@ -6,11 +6,15 @@
 
 angular.module('twitter').
     controller('HomeController',
-    function ($scope, TweetService) {
+    function ($scope, TweetService, $rootScope) {
         $scope.tweets = [];
 
         TweetService.userHomeFeed().then(function (data) {
             console.log('user home feed success', data);
             $scope.tweets = data;
+        });
+
+        $rootScope.$on('postedTweet', function (event, tweet) {
+            $scope.tweets.unshift(tweet);
         });
     });

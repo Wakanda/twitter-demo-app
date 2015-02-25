@@ -82,8 +82,19 @@ model.Tweet.methods.homeTweetFeed = function(user) {
 	});
 
     var tweetArray = [];
-    tweets.forEach(function (t) {
-        tweetArray.push(t);
+    tweets.orderBy("date desc").forEach(function (t) {
+    	t.author;
+        tweetArray.push({
+        	id: t.ID,
+        	text: t.text,
+        	date: t.date,
+        	nbRetweet: t.retweetedBy.count(),
+        	author: {
+        		id: t.author.ID,
+        		cleanName: t.author.cleanName,
+        		login: t.author.login
+        	}
+        });
     });
 	
 	return tweetArray;

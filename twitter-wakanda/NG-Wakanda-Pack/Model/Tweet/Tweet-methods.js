@@ -15,15 +15,7 @@ model.Tweet.methods.post = function(text, user) {
 			
 			tweet.save();
 					
-			return {
-				id: tweet.ID,
-				text: tweet.text,
-				author: {
-					id: tweet.author.ID,
-					login: tweet.author.login
-				},
-				date: tweet.date
-			};
+			return dsTweetToPublic(tweet);
 		}
 		else
 		{
@@ -84,19 +76,23 @@ model.Tweet.methods.homeTweetFeed = function(user) {
     var tweetArray = [];
     tweets.orderBy("date desc").forEach(function (t) {
     	t.author;
-        tweetArray.push({
-        	id: t.ID,
-        	text: t.text,
-        	date: t.date,
-        	nbRetweet: t.retweetedBy.count(),
-        	author: {
-        		id: t.author.ID,
-        		cleanName: t.author.cleanName,
-        		login: t.author.login
-        	}
-        });
+        tweetArray.push(dsTweetToPublic(t));
     });
 	
 	return tweetArray;
 };
 model.Tweet.methods.homeTweetFeed.scope = "public";
+
+function dsTweetToPublic (t) {
+    return {
+        id: t.ID,
+        text: t.text,
+        date: t.date,
+        nbRetweet: t.retweetedBy.count(),
+        author: {
+            id: t.author.ID,
+            cleanName: t.author.cleanName,
+            login: t.author.login
+        }
+    };
+}

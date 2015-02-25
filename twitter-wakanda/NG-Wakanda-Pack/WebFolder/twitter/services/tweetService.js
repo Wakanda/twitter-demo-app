@@ -10,8 +10,7 @@ angular.module('twitter').
             $wakanda.init().then(function (ds) {
                 var user = AuthenticationService.getCurrentUser();
                 var tweet = ds.Tweet.post(text, user);
-                console.log(tweet);
-
+                defered.resolve(tweet);
             });
 
             return defered.promise;

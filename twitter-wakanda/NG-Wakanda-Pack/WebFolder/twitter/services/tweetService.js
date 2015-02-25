@@ -10,8 +10,7 @@ angular.module('twitter').
             $wakanda.init().then(function (ds) {
                 var user = AuthenticationService.getCurrentUser();
                 var tweet = ds.Tweet.post(text, user);
-                console.log(tweet);
-
+                defered.resolve(tweet);
             });
 
             return defered.promise;
@@ -21,10 +20,13 @@ angular.module('twitter').
             var defered = $q.defer();
 
             $wakanda.init().then(function (ds) {
-                var user = AuthenticationService.getCurrentUser();
-                var tweets = ds.Tweet.homeTweetFeed(user);
-                console.log('homeTweetFeed', tweets);
-            });
+                    var user = AuthenticationService.getCurrentUser();
+                    var tweets = ds.Tweet.homeTweetFeed(user);
+                    defered.resolve(tweets);
+                },
+                function () {
+                    defered.reject();
+                });
 
             return defered.promise;
         };

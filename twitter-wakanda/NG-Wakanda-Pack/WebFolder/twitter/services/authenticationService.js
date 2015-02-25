@@ -91,6 +91,28 @@ angular.module('twitter').
             deleteUserInLocalStorage();
         };
 
+        this.getUserWithId = function(userId) {
+            console.log('UserId: ' + userId);
+            $wakanda.init().then(
+                function (ds) {
+                    var user = ds.User.$findOne(3);
+                    console.log('User: ', user);
+
+                    var cleanUser = {
+                        id: user.ID,
+                        login: user.login,
+                        email: user.email,
+                        cleanName: user.cleanName,
+                        description: user.description
+                    };
+                    console.log('User asked is: ', cleanUser);
+                    return cleanUser;
+                }, function(error) {
+                    console.log('Error: ', error);
+                }
+            );
+        };
+
         this.getCurrentUser = function () {
             return $localStorage.user;
         };

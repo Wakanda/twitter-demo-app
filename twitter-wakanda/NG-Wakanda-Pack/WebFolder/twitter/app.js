@@ -3,7 +3,8 @@ var app = angular.module('twitter', [
     'ui.router',
     'ui.bootstrap',
     'ngStorage',
-    'xeditable'
+    'xeditable',
+    'ngRoute'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider',
@@ -29,11 +30,11 @@ app.config(['$stateProvider', '$urlRouterProvider',
             });
         $stateProvider
             .state('profile', {
-                url: '/profile',
+                url: '/profile/:userId',
                 templateUrl: 'views/user-profile.html',
                 controller: 'ProfileController',
                 resolve: {},
-                authenticate: false
+                authenticate: true
             });
     }]);
 

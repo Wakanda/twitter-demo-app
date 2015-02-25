@@ -32,7 +32,8 @@ angular.module('twitter').
                                 id: user.ID,
                                 login: user.login,
                                 email: user.email,
-                                cleanName: user.cleanName
+                                cleanName: user.cleanName,
+                                description: user.description
                             };
 
                             ds.User.registerInSession(user);

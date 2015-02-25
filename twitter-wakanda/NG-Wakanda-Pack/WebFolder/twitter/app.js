@@ -2,7 +2,8 @@ var app = angular.module('twitter', [
     'wakanda',
     'ui.router',
     'ui.bootstrap',
-    'ngStorage'
+    'ngStorage',
+    'xeditable'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider',
@@ -36,7 +37,9 @@ app.config(['$stateProvider', '$urlRouterProvider',
             });
     }]);
 
-app.run(function ($rootScope, $state, AuthenticationService) {
+app.run(function ($rootScope, $state, AuthenticationService, editableOptions) {
+
+    editableOptions.theme = 'bs3';
 
     $rootScope.$on("$stateChangeStart",
         function (event, toState, toParams, fromState, fromParams) {

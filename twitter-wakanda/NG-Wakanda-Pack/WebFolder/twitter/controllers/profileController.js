@@ -20,7 +20,7 @@ angular.module('twitter').
             });
 
             //User tweets retrieving
-            TweetService.profileTweetFeed($scope.userId).then(
+            TweetService.profileTweetFeed($scope.userId, $scope.currentUser.id).then(
                 function (tweets){
                     $scope.tweets = tweets;
                     console.log('profile tweets', tweets);

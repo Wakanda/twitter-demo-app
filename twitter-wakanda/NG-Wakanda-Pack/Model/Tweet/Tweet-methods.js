@@ -75,19 +75,27 @@ model.Tweet.methods.homeTweetFeed = function(user) {
 
     var tweetArray = [];
     tweets.orderBy("date desc").forEach(function (t) {
-        tweetArray.push(dsTweetToPublic(t));
+        tweetArray.push(dsTweetToPublic(t, user.id));
     });
 	
 	return tweetArray;
 };
 model.Tweet.methods.homeTweetFeed.scope = "public";
 
-function dsTweetToPublic (t) {
+/**
+ *
+ * @param t
+ * @param feedReaderId Tweet are listed for a user that read it, this id is his
+ * @returns object
+ */
+function dsTweetToPublic (t, feedReaderId) {
+    var hasBeenRt = t.retweetedBy.find('ID = :1', parseInt(feedReaderId)) != null;
     return {
         id: t.ID,
         text: t.text,
         date: t.date,
         nbRetweet: t.retweetedBy.count(),
+        hasBeenRt: hasBeenRt,
         author: {
             id: t.author.ID,
             cleanName: t.author.cleanName,
@@ -97,7 +105,7 @@ function dsTweetToPublic (t) {
 }
 
 
-model.Tweet.methods.profileTweetFeed = function(userId) {
+model.Tweet.methods.profileTweetFeed = function(userId, readerId) {
     dsUser = ds.User(userId);
 
     if (dsUser == null)
@@ -108,7 +116,7 @@ model.Tweet.methods.profileTweetFeed = function(userId) {
 
     var tweetsArray = [];
     tweets.orderBy("date desc").forEach(function (t) {
-         tweetsArray.push(dsTweetToPublic(t));
+         tweetsArray.push(dsTweetToPublic(t, readerId));
     });
 
     return tweetsArray;

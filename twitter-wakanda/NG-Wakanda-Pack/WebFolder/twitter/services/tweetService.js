@@ -31,12 +31,12 @@ angular.module('twitter').
             return defered.promise;
         };
 
-        this.profileTweetFeed = function (userId) {
+        this.profileTweetFeed = function (userId, readerId) {
             var defered = $q.defer();
 
             $wakanda.init().then(function (ds) {
                 userId = parseInt(userId);
-                var tweets = ds.Tweet.profileTweetFeed(userId);
+                var tweets = ds.Tweet.profileTweetFeed(userId, readerId);
 
                 if (tweets.error)
                     defered.reject(tweets.message);

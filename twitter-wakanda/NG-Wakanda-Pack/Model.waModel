@@ -379,7 +379,7 @@
 				{
 					"name" : "performProfileUpdate",
 					"applyTo" : "dataClass",
-					"scope" : "publicOnServer",
+					"scope" : "public",
 					"from" : "$mainModel.User.methods.performProfileUpdate",
 					"userDefined" : true
 				},

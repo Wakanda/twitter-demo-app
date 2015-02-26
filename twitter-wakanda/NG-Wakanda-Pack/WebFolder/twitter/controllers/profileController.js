@@ -2,7 +2,7 @@
 
 angular.module('twitter').
     controller('ProfileController',
-    function ($scope, AuthenticationService, $stateParams, TweetService) {
+    function ($scope, AuthenticationService, $stateParams, TweetService, $modal) {
         $scope.userId = $stateParams.userId;
         $scope.isProfileEditable = false;
         $scope.user = {};
@@ -58,6 +58,32 @@ angular.module('twitter').
             },
             function(error) {
                 console.error("Error while uploading photo:", error);
+            });
+        };
+
+        $scope.replyToTweet = function(tweet) {
+            console.log("TW: ", tweet);
+            var modalInstance = $modal.open({
+                templateUrl: 'views/modal/modal-reply.html',
+                controller: 'ModalTweetReplyController',
+                size: 'lg',
+                resolve: {
+                    tweet: function () {
+                        return tweet;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (tweet) {
+                TweetService.post(tweet.text).then(
+                    function (tweet) {
+                        $rootScope.$broadcast('postedTweet', tweet);
+                    },
+                    function (data) {
+                        console.error('tweet post', data);
+                    });
+            }, function () {
+                console.info('Modal dismissed at: ' + new Date());
             });
         };
     });

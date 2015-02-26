@@ -106,7 +106,6 @@ angular.module('twitter').
                     var query = ds.User.find("ID == :1", {
                         onSuccess: function(event) {
                             var user = event.entity;
-                            console.log("Current pp: ", user);
                             user.profilePicture.$upload(file).then(function() {
                                 console.log("Upload success");
                             }, function(error) {

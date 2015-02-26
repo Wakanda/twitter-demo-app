@@ -2,13 +2,13 @@
 
 <div class="modal-body">
     <div class="form-group">
-        <label for="tweet-reply-content" class="modal-form-input-header">In reply to <span>"{{originalTweet.content}}"</span></label>
-        <input type="text" class="form-control" id="tweet-reply-content" ng-model="newTweet.content" placeholder="Reply here" maxlength="140">
-        <p class="counter">{{140 - newTweet.content.length}} car.</p>
+        <label for="tweet-reply-content" class="modal-form-input-header">In reply to <span><i>"{{originalTweet.text}}"</i></span></label>
+        <input type="text" class="form-control" id="tweet-reply-content" ng-model="reply.text" placeholder="Reply here" maxlength="140">
+        <p class="counter">{{140 - reply.text.length}} car.</p>
     </div>
 </div>
 
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="sendreply()">Tweet</button>
-    <button class="btn" ng-click="cancelreply()">Cancel</button>
+    <button class="btn btn-primary" ng-click="ok()">Tweet</button>
+    <button class="btn" ng-click="cancel()">Cancel</button>
 </div>

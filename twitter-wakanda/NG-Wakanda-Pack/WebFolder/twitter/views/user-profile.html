@@ -3,8 +3,14 @@
         <img src="http://www.placehold.it/150x150">
     </div>
     <div class="col-lg-4">
-        <h1><a href="#" editable-text="user.cleanName">{{user.cleanName}}</a></h1>
-        <h5><a href="#" editable-text="user.description">{{user.description}}</a></h5>
+        <h1>
+            <a href="#" editable-text="user.cleanName" ng-if="isProfileEditable == true">{{user.cleanName}}</a>
+            <div class="primary-color" ng-if="isProfileEditable == false">{{user.cleanName}}</div>
+        </h1>
+        <h5>
+            <a href="#" editable-text="user.description" ng-if="isProfileEditable == true">{{user.description}}</a>
+            <div ng-if="isProfileEditable == false">{{user.description}}</div>
+        </h5>
         <p><strong class="primary-color">18</strong> followers | <strong class="primary-color">17</strong> following</p>
     </div>
 </div>

@@ -18,7 +18,6 @@ angular.module('twitter').
                 $scope.isProfileEditable = false;
                 AuthenticationService.getUserWithId($scope.userId).then(function(user) {
                     $scope.user = user;
-                    console.log("User profile retrieved: " + $scope.user);
                 },
                 function(error) {
                     console.error('Error: ', error);
@@ -28,19 +27,14 @@ angular.module('twitter').
         $scope.init();
 
         $scope.$watch('user.cleanName', function() {
-            /*
-            console.log('CleanName updated');
             var localCurrentUser = AuthenticationService.getCurrentUser();
             localCurrentUser.cleanName = $scope.user.cleanName;
             AuthenticationService.updateUser($scope.user.cleanName, null);
-            */
         });
 
         $scope.$watch('user.description', function() {
-            /*
             var localCurrentUser = AuthenticationService.getCurrentUser();
             localCurrentUser.description = $scope.user.description;
             AuthenticationService.updateUser(null, $scope.user.description);
-            */
         });
     });

@@ -2,7 +2,7 @@
 
 angular.module('twitter').
     controller('ProfileController',
-    function ($scope, AuthenticationService, $stateParams, TweetService, $modal, $state) {
+    function ($scope, AuthenticationService, $stateParams, TweetService, $state, $rootScope) {
         $scope.userId = $stateParams.userId;
         $scope.userName = $stateParams.username;
         $scope.isProfileEditable = false;
@@ -15,14 +15,14 @@ angular.module('twitter').
             if ($scope.userId != undefined && $scope.userId != null) {
                 AuthenticationService.getUserWithId($scope.userId, $scope.currentUser.id).then(
                     handleUser,
-                    function (error) {
+                    function () {
                         $state.go('404');
                     });
             }
             else {//if ($scope.userName != undefined && $scope.userName != null) {
                 AuthenticationService.getWithLogin($scope.userName, $scope.currentUser.id).then(
                     handleUser,
-                    function (error) {
+                    function () {
                         $state.go('404');
                     }
                 );
@@ -86,29 +86,7 @@ angular.module('twitter').
             $scope.user.isCurrentUserFollowing = !$scope.user.isCurrentUserFollowing;
         };
 
-        $scope.replyToTweet = function(tweet) {
-            console.log("TW: ", tweet);
-            var modalInstance = $modal.open({
-                templateUrl: 'views/modal/modal-reply.html',
-                controller: 'ModalTweetReplyController',
-                size: 'lg',
-                resolve: {
-                    tweet: function () {
-                        return tweet;
-                    }
-                }
-            });
-
-            modalInstance.result.then(function (tweet) {
-                TweetService.post(tweet.text).then(
-                    function (tweet) {
-                        $rootScope.$broadcast('postedTweet', tweet);
-                    },
-                    function (data) {
-                        console.error('tweet post', data);
-                    });
-            }, function () {
-                console.info('Modal dismissed at: ' + new Date());
-            });
-        };
+        $rootScope.$on('postedTweet', function (event, tweet) {
+            $scope.tweets.unshift(tweet);
+        });
     });

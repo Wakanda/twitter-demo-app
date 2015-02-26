@@ -16,8 +16,13 @@ angular.module('twitter').
             }
             else {
                 $scope.isProfileEditable = false;
-                $scope.user = angular.copy(AuthenticationService.getUserWithId($scope.userId));
-                console.log("User profile retrieved: " + $scope.user);
+                AuthenticationService.getUserWithId($scope.userId).then(function(user) {
+                    $scope.user = user;
+                    console.log("User profile retrieved: " + $scope.user);
+                },
+                function(error) {
+                    console.error('Error: ', error);
+                });
             }
         };
         $scope.init();

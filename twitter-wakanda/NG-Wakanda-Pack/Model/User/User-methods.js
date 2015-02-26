@@ -59,6 +59,15 @@ model.User.methods.performProfileUpdate = function(user, login, email, descripti
 	return { code: 200, message: "Profile successfully updated." };
 };
 
+model.User.methods.performProfilePictureUpdate = function(user, file) {
+	var dsUser = ds.User(user.id);
+
+	dsUser.profilePicture = file;
+	
+	dsUser.save();
+	return { code: 200, message: "Profile successfully updated." };
+};
+
 model.User.methods.register = function (user) {
 	if (user.login && user.password && user.email) {
         dsUser = new ds.User();

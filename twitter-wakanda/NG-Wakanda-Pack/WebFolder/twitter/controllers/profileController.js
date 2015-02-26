@@ -49,4 +49,15 @@ angular.module('twitter').
                 console.log('Updated');
             }
         });
+
+        $scope.updateProfilePicture = function() {
+            console.log("Attempt to update profile picture");
+            var image = document.getElementById("candidateProfilePicture");
+            AuthenticationService.updateProfilePicture(image.files[0]).then(function() {
+                console.log("Upload succeeded");
+            },
+            function(error) {
+                console.error("Error while uploading photo:", error);
+            });
+        };
     });

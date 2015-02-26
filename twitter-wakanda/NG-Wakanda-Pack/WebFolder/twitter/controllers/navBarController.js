@@ -6,6 +6,7 @@ angular.module('twitter').
     function ($scope, AuthenticationService, $state, $rootScope, TweetService) {
 
         $scope.tweetText = '';
+        $scope.currentUser = AuthenticationService.getCurrentUser();
 
         $scope.postTweet = function () {
             if ($scope.tweetText.length > 0) {

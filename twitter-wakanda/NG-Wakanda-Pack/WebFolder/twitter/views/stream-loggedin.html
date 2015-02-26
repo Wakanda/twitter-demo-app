@@ -1,7 +1,7 @@
 <div class="row" ng-repeat="t in tweets">
     <div class="container col-lg-6 col-lg-offset-3 tweet-container">
         <div class="col-lg-8 voffset10">
-            <p class="tweet-author-display"><a href="#" alt="See full profile">{{t.author.cleanName}}</a><br /><span>@{{t.author.login}}</span></p>
+            <p class="tweet-author-display"><a ng-href="#/profile/{{t.author.id}}" alt="See full profile">{{t.author.cleanName}}</a><br /><span>@{{t.author.login}}</span></p>
         </div>
         <div class="col-lg-4 voffset5 text-right">
             <p class="tweet-datetime">{{t.date | date:'medium'}}</p>

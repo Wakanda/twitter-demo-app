@@ -31,7 +31,7 @@ angular.module('twitter').
             function handleUser (user) {
                 console.log('User to display: ', user);
                 $scope.user = user;
-                $scope.isProfileEditable = ($scope.currentUser.id.id == user.id);
+                $scope.isProfileEditable = ($scope.currentUser.id == user.id);
 
                 //User tweets retrieving
                 TweetService.profileTweetFeed(user.id, $scope.currentUser.id).then(

@@ -14,7 +14,8 @@
             <div ng-if="isProfileEditable == false">{{user.description}}</div>
         </h5>
         <p><strong class="primary-color">{{user.nbFollowers}}</strong> followers | <strong class="primary-color">{{user.nbFollows}}</strong> following</p>
-        <button class="btn btn-primary" ng-if="isProfileEditable == false">S'abonner</button>
+        <button class="btn btn-primary" ng-if="!isProfileEditable && !user.isCurrentUserFollowing">S'abonner</button>
+        <button class="btn btn-default" ng-if="!isProfileEditable && user.isCurrentUserFollowing">Se désabonner</button>
     </div>
 </div>
 

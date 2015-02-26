@@ -8,6 +8,12 @@ angular.module('twitter').
         $scope.tweetText = '';
         $scope.currentUser = AuthenticationService.getCurrentUser();
 
+        $scope.$watch(function () {
+            return AuthenticationService.getCurrentUser()
+        }, function (newVal, oldVal) {
+            $scope.currentUser = newVal
+        });
+
         $scope.postTweet = function () {
             if ($scope.tweetText.length > 0) {
                 TweetService.post($scope.tweetText).then(

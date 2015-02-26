@@ -11,7 +11,6 @@ angular.module('twitter').
         $scope.currentUser = AuthenticationService.getCurrentUser();
 
         TweetService.userHomeFeed().then(function (data) {
-            console.log('user home feed success', data);
             $scope.tweets = data;
         });
 

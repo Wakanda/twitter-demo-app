@@ -21,8 +21,8 @@
     </div>
 </div>
 
-<div class="row voffset20" ng-repeat="t in tweets">
-    <div class="container col-lg-6 col-lg-offset-3 tweet-container">
+<div class="row voffset20">
+    <div class="container col-lg-6 col-lg-offset-3 tweet-container" ng-repeat="t in tweets">
         <div class="col-lg-8 voffset10">
             <p class="tweet-author-display">
                 <a ng-href="#/profile/{{t.author.id}}" alt="See full profile">{{t.author.cleanName}}</a>

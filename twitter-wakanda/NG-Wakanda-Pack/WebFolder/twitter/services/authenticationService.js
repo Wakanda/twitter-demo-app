@@ -104,6 +104,30 @@ angular.module('twitter').
             return defered.promise;
         };
 
+        this.updateProfilePicture = function(file) {
+            console.log("File: ", file);
+            var defered = $q.defer();
+            $wakanda.init().then(
+                function (ds) {
+                    var query = ds.User.find("ID == :1", {
+                        onSuccess: function(event) {
+                            var user = event.entity;
+                            console.log("Current pp: ", user);
+                            user.profilePicture.$upload(file).then(function() {
+                                console.log("Upload success");
+                            }, function(error) {
+                                console.log("Upload failure: ", error);
+                            });
+                            defered.resolve();
+                        }, params:[$localStorage.user.id]});
+                }, function(error) {
+                    console.log('Error: ', error);
+                    defered.reject(error);
+                }
+            );
+            return defered.promise;
+        };
+
         this.getCurrentUser = function () {
             return $localStorage.user;
         };

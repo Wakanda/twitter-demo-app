@@ -26,7 +26,6 @@ angular.module('twitter').
                     });
 
                     if (!cleanUser.error) {
-                        console.log('New user saved', cleanUser);
                         saveUserInLocalStorage(cleanUser);
                         defered.resolve(cleanUser);
                     }
@@ -47,7 +46,6 @@ angular.module('twitter').
             var defered = $q.defer();
             $wakanda.init().then(
                 function (ds) {
-
                     var user = ds.User.performLogin(login, password);
                     if (!user.error) {
                         saveUserInLocalStorage(user);
@@ -66,7 +64,6 @@ angular.module('twitter').
             $wakanda.init().then(
                 function (ds) {
                     var user = $localStorage.user;
-                    console.log('User active: ', user);
                     ds.User.performProfileUpdate(user, null, null, description, cleanName);
                 }
             );

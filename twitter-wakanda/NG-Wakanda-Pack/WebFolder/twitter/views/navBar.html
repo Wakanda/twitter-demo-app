@@ -28,7 +28,7 @@
                     <div class="col-sm-6 col-md-6">
                         <form class="navbar-form" ng-submit="postTweet()">
                             <div class="input-group">
-                                <input ng-model="$parent.tweetText" type="text" class="form-control" placeholder="Post a tweet">
+                                <input ng-model="$parent.tweetText" type="text" class="form-control" maxlength="140" placeholder="Post a tweet">
                                 <div class="input-group-btn">
                                     <button class="btn btn-primary" type="submit">Tweet</button>
                                 </div>

@@ -82,25 +82,29 @@ angular.module('twitter').
         };
 
         this.getUserWithId = function(userId) {
-            console.log('UserId: ' + userId);
+            var defered = $q.defer();
             $wakanda.init().then(
                 function (ds) {
-                    var user = ds.User.$findOne(3);
-                    console.log('User: ', user);
+                    var query = ds.User.find("ID == :1", {
+                        onSuccess: function(event) {
+                            var user = event.entity;
 
-                    var cleanUser = {
-                        id: user.ID,
-                        login: user.login,
-                        email: user.email,
-                        cleanName: user.cleanName,
-                        description: user.description
-                    };
-                    console.log('User asked is: ', cleanUser);
-                    return cleanUser;
+                            var cleanUser = {
+                                id: userId,
+                                login: user.login.getValue(),
+                                email: user.email.getValue(),
+                                cleanName: user.cleanName.getValue(),
+                                description: user.description.getValue()
+                            };
+                            console.log('User asked is: ', cleanUser);
+                            defered.resolve(cleanUser);
+                        }, params:[parseInt(userId)]});
                 }, function(error) {
                     console.log('Error: ', error);
+                    defered.reject(error);
                 }
             );
+            return defered.promise;
         };
 
         this.getCurrentUser = function () {

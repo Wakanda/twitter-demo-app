@@ -4,26 +4,18 @@ angular.module('twitter').
     controller('ProfileController',
     function ($scope, AuthenticationService, $stateParams) {
         $scope.userId = $stateParams.userId;
-
         $scope.isProfileEditable = false;
         $scope.user = {};
 
         $scope.init = function() {
-            if (AuthenticationService.getCurrentUser().id == $scope.userId) {
-                $scope.isProfileEditable = true;
-                $scope.user = angular.copy(AuthenticationService.getCurrentUser());
-                console.log("It's me: ", $scope.user);
-            }
-            else {
-                $scope.isProfileEditable = false;
-                AuthenticationService.getUserWithId($scope.userId).then(function(user) {
-                    console.log('User to display: ', user);
-                    $scope.user = user;
-                },
-                function(error) {
-                    console.error('Error: ', error);
-                });
-            }
+            AuthenticationService.getUserWithId($scope.userId).then(function(user) {
+                console.log('User to display: ', user);
+                $scope.user = user;
+                $scope.isProfileEditable = (AuthenticationService.getCurrentUser().id == user.id);
+            },
+            function(error) {
+                console.error('Error: ', error);
+            });
         };
         $scope.init();
 

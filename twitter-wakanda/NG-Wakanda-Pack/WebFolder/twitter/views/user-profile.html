@@ -4,7 +4,8 @@
     </div>
     <div class="col-lg-4">
         <h1>
-            <a href="#" editable-text="user.cleanName" ng-if="isProfileEditable == true">{{user.cleanName}}</a>
+            <a href="#" editable-text="user.cleanName" ng-if="isProfileEditable == true && user.cleanName.length > 0">{{user.cleanName}}</a>
+            <a href="#" editable-text="user.cleanName" ng-if="isProfileEditable == true && user.cleanName.length == 0">No display available</a>
             <div class="primary-color" ng-if="isProfileEditable == false">{{user.cleanName}}</div>
         </h1>
         <h5>

@@ -1,382 +1,435 @@
+
 {
-	"toJSON": true,
-	"extraProperties": {
-		"version": "2",
-		"classes": {
-			"User": {
-				"panelColor": "#C3D69B",
-				"isMinimized": "false",
-				"methodInhVisible": "true",
-				"panel": {
-					"isOpen": "true",
-					"pathVisible": true,
-					"position": {
-						"X": 48,
-						"Y": 37
+	"toJSON" : true,
+	"extraProperties" : 
+	{
+		"version" : "2",
+		"classes" : 
+		{
+			"User" : 
+			{
+				"panelColor" : "#C3D69B",
+				"isMinimized" : "false",
+				"methodInhVisible" : "true",
+				"panel" : 
+				{
+					"isOpen" : "true",
+					"pathVisible" : true,
+					"position" : 
+					{
+						"X" : 48,
+						"Y" : 37
 					}
 				}
 			},
-			"Tweet": {
-				"panelColor": "#996699",
-				"panel": {
-					"isOpen": "true",
-					"pathVisible": true,
-					"position": {
-						"X": 780,
-						"Y": 26
+			"Tweet" : 
+			{
+				"panelColor" : "#996699",
+				"panel" : 
+				{
+					"isOpen" : "true",
+					"pathVisible" : true,
+					"position" : 
+					{
+						"X" : 780,
+						"Y" : 26
 					}
 				}
 			},
-			"Retweet": {
-				"panelColor": "#D8D8D8",
-				"panel": {
-					"isOpen": "true",
-					"pathVisible": true,
-					"position": {
-						"X": 527,
-						"Y": 329
+			"Retweet" : 
+			{
+				"panelColor" : "#D8D8D8",
+				"panel" : 
+				{
+					"isOpen" : "true",
+					"pathVisible" : true,
+					"position" : 
+					{
+						"X" : 527,
+						"Y" : 329
 					}
 				}
 			},
-			"Follow": {
-				"panelColor": "#B8CCE4",
-				"panel": {
-					"isOpen": "true",
-					"pathVisible": true,
-					"position": {
-						"X": 535,
-						"Y": 536
+			"Follow" : 
+			{
+				"panelColor" : "#B8CCE4",
+				"panel" : 
+				{
+					"isOpen" : "true",
+					"pathVisible" : true,
+					"position" : 
+					{
+						"X" : 535,
+						"Y" : 536
 					}
 				}
 			}
 		},
-		"model": {
-			"scriptMode": "manual",
-			"workspaceLeft": 0,
-			"workspaceTop": 0,
-			"relationCurve": {
-				"run": true,
-				"mode": 1
+		"model" : 
+		{
+			"scriptMode" : "manual",
+			"workspaceLeft" : 0,
+			"workspaceTop" : 0,
+			"relationCurve" : 
+			{
+				"run" : true,
+				"mode" : 1
 			},
-			"lastScriptLocation": {
-				"User": {
-					"events": "User/User-events.js",
-					"method": "User/User-methods.js"
+			"lastScriptLocation" : 
+			{
+				"User" : 
+				{
+					"events" : "User/User-events.js",
+					"method" : "User/User-methods.js"
 				},
-				"Tweet": {
-					"method": "Tweet/Tweet-methods.js"
+				"Tweet" : 
+				{
+					"method" : "Tweet/Tweet-methods.js"
 				}
 			}
 		}
 	},
-	"dataClasses": [
+	"dataClasses" : 
+	[
 		{
-			"name": "Follow",
-			"className": "Follow",
-			"collectionName": "FollowCollection",
-			"scope": "public",
-			"attributes": [
+			"name" : "Follow",
+			"className" : "Follow",
+			"collectionName" : "FollowCollection",
+			"scope" : "public",
+			"attributes" : 
+			[
 				{
-					"name": "ID",
-					"kind": "storage",
-					"scope": "public",
-					"unique": true,
-					"autosequence": true,
-					"type": "long",
-					"indexKind": "btree",
-					"primKey": true
+					"name" : "ID",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"autosequence" : true,
+					"type" : "long",
+					"indexKind" : "btree"
 				},
 				{
-					"name": "user",
-					"kind": "relatedEntity",
-					"scope": "public",
-					"type": "User",
-					"path": "User"
+					"name" : "user",
+					"kind" : "relatedEntity",
+					"scope" : "public",
+					"type" : "User",
+					"path" : "User"
 				},
 				{
-					"name": "followedUser",
-					"kind": "relatedEntity",
-					"scope": "public",
-					"type": "User",
-					"path": "User"
-				}
-			]
-		},
-		{
-			"name": "Retweet",
-			"className": "Retweet",
-			"collectionName": "RetweetCollection",
-			"scope": "public",
-			"attributes": [
-				{
-					"name": "ID",
-					"kind": "storage",
-					"scope": "public",
-					"unique": true,
-					"autosequence": true,
-					"type": "long",
-					"indexKind": "btree",
-					"primKey": true
-				},
-				{
-					"name": "tweet",
-					"kind": "relatedEntity",
-					"scope": "public",
-					"type": "Tweet",
-					"path": "Tweet"
-				},
-				{
-					"name": "user",
-					"kind": "relatedEntity",
-					"scope": "public",
-					"type": "User",
-					"path": "User"
-				}
-			]
-		},
-		{
-			"name": "Tweet",
-			"className": "Tweet",
-			"collectionName": "TweetCollection",
-			"scope": "public",
-			"attributes": [
-				{
-					"name": "ID",
-					"kind": "storage",
-					"scope": "public",
-					"unique": true,
-					"autosequence": true,
-					"type": "long",
-					"indexKind": "btree",
-					"primKey": true
-				},
-				{
-					"name": "author",
-					"kind": "relatedEntity",
-					"scope": "public",
-					"type": "User",
-					"path": "User"
-				},
-				{
-					"name": "text",
-					"kind": "storage",
-					"scope": "public",
-					"type": "string"
-				},
-				{
-					"name": "date",
-					"kind": "storage",
-					"scope": "public",
-					"type": "date",
-					"simpleDate": false
-				},
-				{
-					"name": "retweetCollection",
-					"kind": "relatedEntities",
-					"scope": "public",
-					"type": "RetweetCollection",
-					"reversePath": true,
-					"path": "tweet"
-				},
-				{
-					"name": "retweetedBy",
-					"kind": "relatedEntities",
-					"scope": "public",
-					"type": "UserCollection",
-					"path": "retweetCollection.user"
+					"name" : "followedUser",
+					"kind" : "relatedEntity",
+					"scope" : "public",
+					"type" : "User",
+					"path" : "User"
 				}
 			],
-			"methods": [
+			"key" : 
+			[
 				{
-					"name": "homeTweetFeed",
-					"applyTo": "dataClass",
-					"scope": "public",
-					"from": "$mainModel.Tweet.methods.homeTweetFeed",
-					"userDefined": true
-				},
-				{
-					"name": "post",
-					"applyTo": "dataClass",
-					"scope": "public",
-					"from": "$mainModel.Tweet.methods.post",
-					"userDefined": true
-				},
-				{
-					"name": "profileTweetFeed",
-					"applyTo": "dataClass",
-					"scope": "public",
-					"from": "$mainModel.Tweet.methods.profileTweetFeed",
-					"userDefined": true
-				},
-				{
-					"name": "retweet",
-					"applyTo": "dataClass",
-					"scope": "public",
-					"from": "$mainModel.Tweet.methods.retweet",
-					"userDefined": true
+					"name" : "ID"
 				}
 			]
 		},
 		{
-			"name": "User",
-			"className": "User",
-			"collectionName": "UserCollection",
-			"scope": "public",
-			"attributes": [
+			"name" : "Retweet",
+			"className" : "Retweet",
+			"collectionName" : "RetweetCollection",
+			"scope" : "public",
+			"attributes" : 
+			[
 				{
-					"name": "ID",
-					"kind": "storage",
-					"scope": "public",
-					"unique": true,
-					"autosequence": true,
-					"type": "long",
-					"indexKind": "btree",
-					"primKey": true
+					"name" : "ID",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"autosequence" : true,
+					"type" : "long",
+					"indexKind" : "btree"
 				},
 				{
-					"name": "login",
-					"kind": "storage",
-					"scope": "public",
-					"unique": true,
-					"type": "string",
-					"indexKind": "btree"
+					"name" : "tweet",
+					"kind" : "relatedEntity",
+					"scope" : "public",
+					"type" : "Tweet",
+					"path" : "Tweet"
 				},
 				{
-					"name": "password",
-					"kind": "storage",
-					"scope": "public",
-					"type": "string"
-				},
-				{
-					"name": "email",
-					"kind": "storage",
-					"scope": "public",
-					"unique": true,
-					"type": "string",
-					"indexKind": "btree"
-				},
-				{
-					"name": "tweetCollection",
-					"kind": "relatedEntities",
-					"scope": "public",
-					"type": "TweetCollection",
-					"reversePath": true,
-					"path": "author"
-				},
-				{
-					"name": "retweetCollection",
-					"kind": "relatedEntities",
-					"scope": "public",
-					"type": "RetweetCollection",
-					"reversePath": true,
-					"path": "user"
-				},
-				{
-					"name": "retweetedTweets",
-					"kind": "relatedEntities",
-					"scope": "public",
-					"type": "TweetCollection",
-					"path": "retweetCollection.tweet"
-				},
-				{
-					"name": "description",
-					"kind": "storage",
-					"scope": "public",
-					"type": "string"
-				},
-				{
-					"name": "cleanName",
-					"kind": "storage",
-					"scope": "public",
-					"type": "string"
-				},
-				{
-					"name": "followCollection",
-					"kind": "relatedEntities",
-					"scope": "public",
-					"type": "FollowCollection",
-					"reversePath": true,
-					"path": "user"
-				},
-				{
-					"name": "followCollection_1",
-					"kind": "relatedEntities",
-					"scope": "public",
-					"type": "FollowCollection",
-					"reversePath": true,
-					"path": "followedUser"
-				},
-				{
-					"name": "follows",
-					"kind": "relatedEntities",
-					"scope": "public",
-					"type": "UserCollection",
-					"path": "followCollection.followedUser"
-				},
-				{
-					"name": "followers",
-					"kind": "relatedEntities",
-					"scope": "public",
-					"type": "UserCollection",
-					"path": "followCollection_1.user"
-				},
-				{
-					"name": "profilePicture",
-					"kind": "storage",
-					"scope": "public",
-					"cacheDuration": 60,
-					"type": "image"
+					"name" : "user",
+					"kind" : "relatedEntity",
+					"scope" : "public",
+					"type" : "User",
+					"path" : "User"
 				}
 			],
-			"methods": [
+			"key" : 
+			[
 				{
-					"name": "getWithId",
-					"applyTo": "dataClass",
-					"scope": "public",
-					"from": "$mainModel.User.methods.getWithId",
-					"userDefined": true
+					"name" : "ID"
+				}
+			]
+		},
+		{
+			"name" : "Tweet",
+			"className" : "Tweet",
+			"collectionName" : "TweetCollection",
+			"scope" : "public",
+			"attributes" : 
+			[
+				{
+					"name" : "ID",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"autosequence" : true,
+					"type" : "long",
+					"indexKind" : "btree"
 				},
 				{
-					"name": "performLogin",
-					"applyTo": "dataClass",
-					"scope": "public",
-					"from": "$mainModel.User.methods.performLogin",
-					"userDefined": true
+					"name" : "author",
+					"kind" : "relatedEntity",
+					"scope" : "public",
+					"type" : "User",
+					"path" : "User"
 				},
 				{
-					"name": "performLogout",
-					"applyTo": "dataClass",
-					"scope": "public",
-					"from": "$mainModel.User.methods.performLogout",
-					"userDefined": true
+					"name" : "text",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "string"
 				},
 				{
-					"name": "performProfilePictureUpdate",
-					"applyTo": "dataClass",
-					"scope": "publicOnServer",
-					"from": "$mainModel.User.methods.performProfilePictureUpdate",
-					"userDefined": true
+					"name" : "date",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "date",
+					"simpleDate" : false
 				},
 				{
-					"name": "performProfileUpdate",
-					"applyTo": "dataClass",
-					"scope": "public",
-					"from": "$mainModel.User.methods.performProfileUpdate",
-					"userDefined": true
+					"name" : "retweetCollection",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "RetweetCollection",
+					"reversePath" : true,
+					"path" : "tweet"
 				},
 				{
-					"name": "register",
-					"applyTo": "dataClass",
-					"scope": "public",
-					"from": "$mainModel.User.methods.register",
-					"userDefined": true
+					"name" : "retweetedBy",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "UserCollection",
+					"path" : "retweetCollection.user"
+				}
+			],
+			"methods" : 
+			[
+				{
+					"name" : "homeTweetFeed",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Tweet.methods.homeTweetFeed",
+					"userDefined" : true
 				},
 				{
-					"name": "validatePassword",
-					"applyTo": "entity",
-					"scope": "publicOnServer",
-					"from": "$mainModel.User.entityMethods.validatePassword",
-					"userDefined": true
+					"name" : "post",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Tweet.methods.post",
+					"userDefined" : true
+				},
+				{
+					"name" : "profileTweetFeed",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Tweet.methods.profileTweetFeed",
+					"userDefined" : true
+				},
+				{
+					"name" : "retweet",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Tweet.methods.retweet",
+					"userDefined" : true
+				}
+			],
+			"key" : 
+			[
+				{
+					"name" : "ID"
+				}
+			]
+		},
+		{
+			"name" : "User",
+			"className" : "User",
+			"collectionName" : "UserCollection",
+			"scope" : "public",
+			"attributes" : 
+			[
+				{
+					"name" : "ID",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"autosequence" : true,
+					"type" : "long",
+					"indexKind" : "btree"
+				},
+				{
+					"name" : "login",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"type" : "string",
+					"indexKind" : "btree"
+				},
+				{
+					"name" : "password",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "string"
+				},
+				{
+					"name" : "email",
+					"kind" : "storage",
+					"scope" : "public",
+					"indexed" : true,
+					"unique" : true,
+					"type" : "string",
+					"indexKind" : "btree"
+				},
+				{
+					"name" : "tweetCollection",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "TweetCollection",
+					"reversePath" : true,
+					"path" : "author"
+				},
+				{
+					"name" : "retweetCollection",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "RetweetCollection",
+					"reversePath" : true,
+					"path" : "user"
+				},
+				{
+					"name" : "retweetedTweets",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "TweetCollection",
+					"path" : "retweetCollection.tweet"
+				},
+				{
+					"name" : "description",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "string"
+				},
+				{
+					"name" : "cleanName",
+					"kind" : "storage",
+					"scope" : "public",
+					"type" : "string"
+				},
+				{
+					"name" : "followCollection",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "FollowCollection",
+					"reversePath" : true,
+					"path" : "user"
+				},
+				{
+					"name" : "followCollection_1",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "FollowCollection",
+					"reversePath" : true,
+					"path" : "followedUser"
+				},
+				{
+					"name" : "follows",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "UserCollection",
+					"path" : "followCollection.followedUser"
+				},
+				{
+					"name" : "followers",
+					"kind" : "relatedEntities",
+					"scope" : "public",
+					"type" : "UserCollection",
+					"path" : "followCollection_1.user"
+				},
+				{
+					"name" : "profilePicture",
+					"kind" : "storage",
+					"scope" : "public",
+					"cacheDuration" : 60,
+					"type" : "image"
+				}
+			],
+			"methods" : 
+			[
+				{
+					"name" : "getWithId",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.getWithId",
+					"userDefined" : true
+				},
+				{
+					"name" : "performLogin",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.performLogin",
+					"userDefined" : true
+				},
+				{
+					"name" : "performLogout",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.performLogout",
+					"userDefined" : true
+				},
+				{
+					"name" : "performProfilePictureUpdate",
+					"applyTo" : "dataClass",
+					"scope" : "publicOnServer",
+					"from" : "$mainModel.User.methods.performProfilePictureUpdate",
+					"userDefined" : true
+				},
+				{
+					"name" : "performProfileUpdate",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.performProfileUpdate",
+					"userDefined" : true
+				},
+				{
+					"name" : "register",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.register",
+					"userDefined" : true
+				},
+				{
+					"name" : "validatePassword",
+					"applyTo" : "entity",
+					"scope" : "publicOnServer",
+					"from" : "$mainModel.User.entityMethods.validatePassword",
+					"userDefined" : true
+				}
+			],
+			"key" : 
+			[
+				{
+					"name" : "ID"
 				}
 			]
 		}

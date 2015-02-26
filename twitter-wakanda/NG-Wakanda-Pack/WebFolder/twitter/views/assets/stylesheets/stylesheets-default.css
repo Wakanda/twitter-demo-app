@@ -74,7 +74,7 @@ p.tweet-content {
 }
 
 .twitter-btn-action-retweeted span {
-    color: #1ABC9B;
+    color: #1ABC9B !important;
 }
 
 .twitter-btn-action-retweet span {

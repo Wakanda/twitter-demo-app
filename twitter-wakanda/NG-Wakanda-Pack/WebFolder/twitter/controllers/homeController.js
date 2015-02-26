@@ -6,8 +6,9 @@
 
 angular.module('twitter').
     controller('HomeController',
-    function ($scope, TweetService, $rootScope) {
+    function ($scope, TweetService, $rootScope, AuthenticationService) {
         $scope.tweets = [];
+        $scope.currentUser = AuthenticationService.getCurrentUser();
 
         TweetService.userHomeFeed().then(function (data) {
             console.log('user home feed success', data);

@@ -30,5 +30,21 @@ angular.module('twitter').
 
             return defered.promise;
         };
+
+        this.profileTweetFeed = function (userId) {
+            var defered = $q.defer();
+
+            $wakanda.init().then(function (ds) {
+                userId = parseInt(userId);
+                var tweets = ds.Tweet.profileTweetFeed(userId);
+
+                if (tweets.error)
+                    defered.reject(tweets.message);
+                else
+                    defered.resolve(tweets);
+            });
+
+            return defered.promise;
+        };
     }
 );

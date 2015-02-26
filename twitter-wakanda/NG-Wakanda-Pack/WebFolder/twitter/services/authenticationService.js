@@ -136,9 +136,24 @@ angular.module('twitter').
             return defered.promise;
         };
 
-        this.getCurrentUser = function () {
-            return $localStorage.user;
+        this.subscribeToUser = function(toUserId) {
+            $wakanda.init().then(function (ds) {
+                ds.User.addUserSubscription(parseInt(getCurrentUser().id),
+                    parseInt(toUserId));
+            });
         };
+
+        this.unsubscribeFromUser = function(toUserId) {
+            $wakanda.init().then(function (ds) {
+                ds.User.removeUserSubscription(parseInt(getCurrentUser().id), parseInt(toUserId));
+            });
+        };
+
+        this.getCurrentUser = getCurrentUser;
+
+        function getCurrentUser() {
+            return $localStorage.user;
+        }
 
         function deleteUserInLocalStorage() {
             delete $localStorage.user;

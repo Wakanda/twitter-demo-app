@@ -116,6 +116,7 @@ model.User.methods.getWithLogin = function(login, readerId) {
 };
 model.User.methods.getWithLogin.scope = "public";
 
+
 function dsUserToPublic (dsUser, readerId) {
     var isReaderFollowing = dsUser.followers.find('ID = :1', parseInt(readerId)) != null;
 
@@ -130,3 +131,26 @@ function dsUserToPublic (dsUser, readerId) {
         isCurrentUserFollowing:isReaderFollowing
     };
 }
+
+model.User.methods.addUserSubscription = function(fromUserId, toUserId) {
+	dsFollow = new ds.Follow();
+	dsFollow.user = fromUserId;
+	dsFollow.followedUser = toUserId;
+	dsFollow.save();
+	
+	return {code: 200, message: "Subscription saved."};
+};
+model.User.methods.addUserSubscription.scope = "public";
+
+
+model.User.methods.removeUserSubscription = function(fromUserId, toUserId) {
+	var dsFollow = ds.Follow.query('user.ID = :1 AND followedUser.ID = :2',
+		fromUserId,
+		toUserId);
+	if (dsFollow != null) {
+		dsFollow.remove();
+	}
+		
+	return {code: 200, message: "Subscription removed."};
+};
+model.User.methods.removeUserSubscription.scope = "public";

@@ -76,6 +76,16 @@ angular.module('twitter').
             });
         };
 
+        $scope.subscribe = function() {
+            AuthenticationService.subscribeToUser($scope.user.id);
+            $scope.user.isCurrentUserFollowing = !$scope.user.isCurrentUserFollowing;
+        };
+
+        $scope.unsubscribe = function() {
+            AuthenticationService.unsubscribeFromUser($scope.user.id);
+            $scope.user.isCurrentUserFollowing = !$scope.user.isCurrentUserFollowing;
+        };
+
         $scope.replyToTweet = function(tweet) {
             console.log("TW: ", tweet);
             var modalInstance = $modal.open({

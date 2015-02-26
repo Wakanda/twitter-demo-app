@@ -4,13 +4,13 @@
     </div>
     <div class="col-lg-4">
         <h1>
-            <a href="#" editable-text="user.cleanName" ng-if="isProfileEditable == true && user.cleanName.length > 0">{{user.cleanName}}</a>
-            <a href="#" editable-text="user.cleanName" ng-if="isProfileEditable == true && user.cleanName.length == 0">No display available</a>
+            <a href="#" editable-text="user.cleanName" ng-if="isProfileEditable && user.cleanName.length > 0">{{user.cleanName}}</a>
+            <a href="#" editable-text="user.cleanName" ng-if="isProfileEditable && (!user.cleanName || user.cleanName.length == 0)">Choose a name !</a>
             <div class="primary-color" ng-if="isProfileEditable == false">{{user.cleanName}}</div>
         </h1>
         <h5>
-            <a href="#" editable-text="user.description" ng-if="isProfileEditable == true && user.description.length > 0">{{user.description}}</a>
-            <a href="#" editable-text="user.description" ng-if="isProfileEditable == true && user.description.length == 0">No description available</a>
+            <a href="#" editable-text="user.description" ng-if="isProfileEditable && user.description.length > 0">{{user.description}}</a>
+            <a href="#" editable-text="user.description" ng-if="isProfileEditable && (!user.description || user.description.length == 0)">Enter a description !</a>
             <div ng-if="isProfileEditable == false">{{user.description}}</div>
         </h5>
         <p><strong class="primary-color">{{user.nbFollowers}}</strong> followers | <strong class="primary-color">{{user.nbFollows}}</strong> following</p>

@@ -28,14 +28,20 @@ angular.module('twitter').
         $scope.init();
 
         $scope.$watch('user.cleanName', function() {
-            var localCurrentUser = AuthenticationService.getCurrentUser();
-            localCurrentUser.cleanName = $scope.user.cleanName;
-            AuthenticationService.updateUser($scope.user.cleanName, null);
+            if ($scope.isProfileEditable) {
+                var localCurrentUser = AuthenticationService.getCurrentUser();
+                localCurrentUser.cleanName = $scope.user.cleanName;
+                AuthenticationService.updateUser($scope.user.cleanName, null);
+                console.log('Updated');
+            }
         });
 
         $scope.$watch('user.description', function() {
-            var localCurrentUser = AuthenticationService.getCurrentUser();
-            localCurrentUser.description = $scope.user.description;
-            AuthenticationService.updateUser(null, $scope.user.description);
+            if ($scope.isProfileEditable) {
+                var localCurrentUser = AuthenticationService.getCurrentUser();
+                localCurrentUser.description = $scope.user.description;
+                AuthenticationService.updateUser(null, $scope.user.description);
+                console.log('Updated');
+            }
         });
     });

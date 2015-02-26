@@ -8,7 +8,8 @@
             <div class="primary-color" ng-if="isProfileEditable == false">{{user.cleanName}}</div>
         </h1>
         <h5>
-            <a href="#" editable-text="user.description" ng-if="isProfileEditable == true">{{user.description}}</a>
+            <a href="#" editable-text="user.description" ng-if="isProfileEditable == true && user.description.length > 0">{{user.description}}</a>
+            <a href="#" editable-text="user.description" ng-if="isProfileEditable == true && user.description.length == 0">No description available</a>
             <div ng-if="isProfileEditable == false">{{user.description}}</div>
         </h5>
         <p><strong class="primary-color">18</strong> followers | <strong class="primary-color">17</strong> following</p>

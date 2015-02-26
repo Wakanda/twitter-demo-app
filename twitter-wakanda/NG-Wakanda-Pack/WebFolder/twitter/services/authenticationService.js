@@ -78,25 +78,19 @@ angular.module('twitter').
             deleteUserInLocalStorage();
         };
 
-        this.getUserWithId = function(userId) {
+        this.getUserWithId = function (userId) {
             var defered = $q.defer();
             $wakanda.init().then(
                 function (ds) {
-                    var query = ds.User.find("ID == :1", {
-                        onSuccess: function(event) {
-                            var user = event.entity;
 
-                            var cleanUser = {
-                                id: userId,
-                                login: user.login.getValue(),
-                                email: user.email.getValue(),
-                                cleanName: user.cleanName.getValue(),
-                                description: user.description.getValue()
-                            };
-                            console.log('User asked is: ', cleanUser);
-                            defered.resolve(cleanUser);
-                        }, params:[parseInt(userId)]});
-                }, function(error) {
+                    var user = ds.User.getWithId(parseInt(userId));
+
+                    if (user.error)
+                        defered.reject(user.message);
+                    else
+                        defered.resolve(user);
+                },
+                function (error) {
                     console.log('Error: ', error);
                     defered.reject(error);
                 }

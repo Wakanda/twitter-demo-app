@@ -2,10 +2,12 @@
 
 angular.module('twitter').
     controller('ProfileController',
-    function ($scope, AuthenticationService, $stateParams) {
+    function ($scope, AuthenticationService, $stateParams, TweetService) {
         $scope.userId = $stateParams.userId;
         $scope.isProfileEditable = false;
         $scope.user = {};
+        $scope.currentUser = AuthenticationService.getCurrentUser();
+        $scope.tweets = [];
 
         $scope.init = function() {
             AuthenticationService.getUserWithId($scope.userId).then(function(user) {
@@ -16,6 +18,17 @@ angular.module('twitter').
             function(error) {
                 console.error('Error: ', error);
             });
+
+            //User tweets retrieving
+            TweetService.profileTweetFeed($scope.userId).then(
+                function (tweets){
+                    $scope.tweets = tweets;
+                    console.log('profile tweets', tweets);
+                },
+                function (errorMessage) {
+                    console.error(errorMessage);
+                }
+            );
         };
         $scope.init();
 

@@ -75,7 +75,6 @@ model.Tweet.methods.homeTweetFeed = function(user) {
 
     var tweetArray = [];
     tweets.orderBy("date desc").forEach(function (t) {
-    	t.author;
         tweetArray.push(dsTweetToPublic(t));
     });
 	
@@ -96,3 +95,22 @@ function dsTweetToPublic (t) {
         }
     };
 }
+
+
+model.Tweet.methods.profileTweetFeed = function(userId) {
+    dsUser = ds.User(userId);
+
+    if (dsUser == null)
+        return {error:404, message:"User not found"};
+
+    var tweets = dsUser.tweetCollection;
+    tweets = tweets.or(dsUser.retweetedTweets);
+
+    var tweetsArray = [];
+    tweets.orderBy("date desc").forEach(function (t) {
+         tweetsArray.push(dsTweetToPublic(t));
+    });
+
+    return tweetsArray;
+};
+model.Tweet.methods.profileTweetFeed.scope = "public";

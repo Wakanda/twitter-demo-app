@@ -201,6 +201,22 @@
 					"from": "$mainModel.Tweet.methods.post",
 					"userDefined": true
 				},
+					"name" : "profileTweetFeed",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Tweet.methods.profileTweetFeed",
+					"userDefined" : true
+				},
+				{
+					"name" : "retweet",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Tweet.methods.retweet",
+					"userDefined" : true
+				}
+			],
+			"key" : 
+			[
 				{
 					"name": "retweet",
 					"applyTo": "dataClass",
@@ -328,6 +344,20 @@
 					"scope": "public",
 					"from": "$mainModel.User.methods.performLogin",
 					"userDefined": true
+				},
+				{
+					"name" : "getWithId",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.getWithId",
+					"userDefined" : true
+				},
+				{
+					"name" : "performLogin",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.performLogin",
+					"userDefined" : true
 				},
 				{
 					"name": "performLogout",

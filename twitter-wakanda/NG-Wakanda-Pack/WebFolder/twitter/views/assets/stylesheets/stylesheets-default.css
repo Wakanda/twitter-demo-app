@@ -73,12 +73,16 @@ p.tweet-content {
     font-weight: 400;
 }
 
-.twitter-btn-action-retweet span {
+.twitter-btn-action-retweeted span {
     color: #1ABC9B;
 }
 
+.twitter-btn-action-retweet span {
+     color: #636363;
+ }
+
 .twitter-btn-action-reply span {
-    color: #000;
+    color: #636363;
 }
 
 /* MODAL */

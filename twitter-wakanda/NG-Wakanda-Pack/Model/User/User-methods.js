@@ -96,30 +96,29 @@ model.User.methods.register.scope = "public";
 model.User.methods.performProfileUpdate.scope = "public";
 
 
-model.User.methods.getWithId = function(userId) {
+model.User.methods.getWithId = function(userId, readerId) {
     dsUser = ds.User(userId);
 
     if (dsUser == null)
         return {error: 404, message: "User not found"};
 
-    return {
-        id: dsUser.ID,
-        login: dsUser.login,
-        email: dsUser.email,
-        cleanName: dsUser.cleanName,
-        description: dsUser.description,
-        nbFollows: dsUser.follows.count(),
-        nbFollowers: dsUser.followers.count()
-    };
+    return dsUserToPublic(dsUser, readerId);
 };
 model.User.methods.getWithId.scope = "public";
 
-model.User.methods.getWithLogin = function(login) {
+model.User.methods.getWithLogin = function(login, readerId) {
 	dsUser = ds.User.find('login = :1', login);
 
     if (dsUser == null)
         return {error:404, message:"User not found"};
 
+    return dsUserToPublic(dsUser, readerId);
+};
+model.User.methods.getWithLogin.scope = "public";
+
+function dsUserToPublic (dsUser, readerId) {
+    var isReaderFollowing = dsUser.followers.find('ID = :1', parseInt(readerId)) != null;
+
     return {
         id: dsUser.ID,
         login: dsUser.login,
@@ -127,7 +126,7 @@ model.User.methods.getWithLogin = function(login) {
         cleanName: dsUser.cleanName,
         description: dsUser.description,
         nbFollows: dsUser.follows.count(),
-        nbFollowers: dsUser.followers.count()
+        nbFollowers: dsUser.followers.count(),
+        isCurrentUserFollowing:isReaderFollowing
     };
-};
-model.User.methods.getWithLogin.scope = "public";
+}

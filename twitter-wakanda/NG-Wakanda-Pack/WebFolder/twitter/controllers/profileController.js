@@ -13,14 +13,14 @@ angular.module('twitter').
         $scope.init = function() {
 
             if ($scope.userId != undefined && $scope.userId != null) {
-                AuthenticationService.getUserWithId($scope.userId).then(
+                AuthenticationService.getUserWithId($scope.userId, $scope.currentUser.id).then(
                     handleUser,
                     function (error) {
                         $state.go('404');
                     });
             }
             else {//if ($scope.userName != undefined && $scope.userName != null) {
-                AuthenticationService.getWithLogin($scope.userName).then(
+                AuthenticationService.getWithLogin($scope.userName, $scope.currentUser.id).then(
                     handleUser,
                     function (error) {
                         $state.go('404');
@@ -31,7 +31,7 @@ angular.module('twitter').
             function handleUser (user) {
                 console.log('User to display: ', user);
                 $scope.user = user;
-                $scope.isProfileEditable = (AuthenticationService.getCurrentUser().id == user.id);
+                $scope.isProfileEditable = ($scope.currentUser.id.id == user.id);
 
                 //User tweets retrieving
                 TweetService.profileTweetFeed(user.id, $scope.currentUser.id).then(

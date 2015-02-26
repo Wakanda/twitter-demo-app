@@ -78,12 +78,12 @@ angular.module('twitter').
             deleteUserInLocalStorage();
         };
 
-        this.getUserWithId = function (userId) {
+        this.getUserWithId = function (userId, readerId) {
             var defered = $q.defer();
             $wakanda.init().then(
                 function (ds) {
 
-                    var user = ds.User.getWithId(parseInt(userId));
+                    var user = ds.User.getWithId(parseInt(userId), parseInt(readerId));
 
                     if (user.error)
                         defered.reject(user.message);
@@ -98,11 +98,11 @@ angular.module('twitter').
             return defered.promise;
         };
 
-        this.getWithLogin = function (login) {
+        this.getWithLogin = function (login, readerId) {
             var defered = $q.defer();
 
             $wakanda.init().then(function (ds) {
-                var user = ds.User.getWithLogin(login);
+                var user = ds.User.getWithLogin(login, parseInt(readerId));
 
                 if (user.error)
                     defered.reject(user.message);

@@ -33,7 +33,7 @@
                                     <button class="btn btn-primary" type="submit">Tweet</button>
                                 </div>
                             </div>
-                            <div class="checkbox text-muted">
+                            <div class="checkbox text-muted" ng-show="$parent.tweetText.length > 0">
                                 {{$parent.tweetText.length}}/140
                             </div>
                         </form>

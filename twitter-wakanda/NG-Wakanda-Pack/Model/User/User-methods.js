@@ -113,3 +113,21 @@ model.User.methods.getWithId = function(userId) {
     };
 };
 model.User.methods.getWithId.scope = "public";
+
+model.User.methods.getWithLogin = function(login) {
+	dsUser = ds.User.find('login = :1', login);
+
+    if (dsUser == null)
+        return {error:404, message:"User not found"};
+
+    return {
+        id: dsUser.ID,
+        login: dsUser.login,
+        email: dsUser.email,
+        cleanName: dsUser.cleanName,
+        description: dsUser.description,
+        nbFollows: dsUser.follows.count(),
+        nbFollowers: dsUser.followers.count()
+    };
+};
+model.User.methods.getWithLogin.scope = "public";

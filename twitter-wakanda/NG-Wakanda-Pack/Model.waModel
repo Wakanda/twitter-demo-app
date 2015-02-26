@@ -384,6 +384,13 @@
 					"userDefined" : true
 				},
 				{
+					"name" : "getWithLogin",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.getWithLogin",
+					"userDefined" : true
+				},
+				{
 					"name" : "performLogin",
 					"applyTo" : "dataClass",
 					"scope" : "public",

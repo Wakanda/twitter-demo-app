@@ -2,33 +2,48 @@
 
 angular.module('twitter').
     controller('ProfileController',
-    function ($scope, AuthenticationService, $stateParams, TweetService, $modal) {
+    function ($scope, AuthenticationService, $stateParams, TweetService, $modal, $state) {
         $scope.userId = $stateParams.userId;
+        $scope.userName = $stateParams.username;
         $scope.isProfileEditable = false;
-        $scope.user = {};
+        $scope.user = null;
         $scope.currentUser = AuthenticationService.getCurrentUser();
         $scope.tweets = [];
 
         $scope.init = function() {
-            AuthenticationService.getUserWithId($scope.userId).then(function(user) {
+
+            if ($scope.userId != undefined && $scope.userId != null) {
+                AuthenticationService.getUserWithId($scope.userId).then(
+                    handleUser,
+                    function (error) {
+                        $state.go('404');
+                    });
+            }
+            else {//if ($scope.userName != undefined && $scope.userName != null) {
+                AuthenticationService.getWithLogin($scope.userName).then(
+                    handleUser,
+                    function (error) {
+                        $state.go('404');
+                    }
+                );
+            }
+
+            function handleUser (user) {
                 console.log('User to display: ', user);
                 $scope.user = user;
                 $scope.isProfileEditable = (AuthenticationService.getCurrentUser().id == user.id);
-            },
-            function(error) {
-                console.error('Error: ', error);
-            });
 
-            //User tweets retrieving
-            TweetService.profileTweetFeed($scope.userId, $scope.currentUser.id).then(
-                function (tweets){
-                    $scope.tweets = tweets;
-                    console.log('profile tweets', tweets);
-                },
-                function (errorMessage) {
-                    console.error(errorMessage);
-                }
-            );
+                //User tweets retrieving
+                TweetService.profileTweetFeed(user.id, $scope.currentUser.id).then(
+                    function (tweets){
+                        $scope.tweets = tweets;
+                        console.log('profile tweets', tweets);
+                    },
+                    function (errorMessage) {
+                        console.error(errorMessage);
+                    }
+                );
+            }
         };
         $scope.init();
 

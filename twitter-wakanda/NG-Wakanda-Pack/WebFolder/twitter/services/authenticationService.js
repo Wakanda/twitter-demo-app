@@ -98,6 +98,21 @@ angular.module('twitter').
             return defered.promise;
         };
 
+        this.getWithLogin = function (login) {
+            var defered = $q.defer();
+
+            $wakanda.init().then(function (ds) {
+                var user = ds.User.getWithLogin(login);
+
+                if (user.error)
+                    defered.reject(user.message);
+                else
+                    defered.resolve(user);
+            });
+
+            return defered.promise;
+        };
+
         this.updateProfilePicture = function(file) {
             console.log("File: ", file);
             var defered = $q.defer();

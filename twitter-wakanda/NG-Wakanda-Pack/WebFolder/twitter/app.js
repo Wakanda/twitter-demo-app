@@ -4,7 +4,8 @@ var app = angular.module('twitter', [
     'ui.bootstrap',
     'ngStorage',
     'xeditable',
-    'ngRoute'
+    'ngRoute',
+    'linkify'
 ]);
 
 app.config(['$stateProvider', '$urlRouterProvider',
@@ -35,6 +36,21 @@ app.config(['$stateProvider', '$urlRouterProvider',
                 controller: 'ProfileController',
                 resolve: {},
                 authenticate: true
+            });
+        $stateProvider
+            .state('nprofile', {
+                url: '/nprofile/:username',
+                templateUrl: 'views/user-profile.html',
+                controller: 'ProfileController',
+                resolve: {},
+                authenticate: true
+            });
+        $stateProvider
+            .state('404', {
+                url: '/notfound',
+                templateUrl: 'views/404.html',
+                resolve: {},
+                authenticate: false
             });
     }]);
 

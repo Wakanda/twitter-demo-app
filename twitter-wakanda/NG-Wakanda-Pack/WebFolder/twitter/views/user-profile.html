@@ -34,7 +34,7 @@
             <p class="tweet-datetime">{{t.date | date:'medium'}}</p>
         </div>
         <div class="col-lg-12 voffset5">
-            <p class="tweet-content">{{t.text}}</p>
+            <p class="tweet-content" linkify="twitter">{{t.text}}</p>
         </div>
         <div class="col-lg-4 vbottomoffset10">
             <button type="button" class="btn btn-default btn-xs twitter-btn-action-retweet"

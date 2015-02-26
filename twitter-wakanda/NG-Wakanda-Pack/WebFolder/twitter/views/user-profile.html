@@ -40,7 +40,7 @@
             <button type="button" class="btn btn-default btn-xs twitter-btn-action-retweet" ng-disabled="t.author.id == currentUser.id">
                 <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span> {{t.nbRetweet}}
             </button>
-            <button type="button" class="btn btn-default btn-xs twitter-btn-action-reply">
+            <button type="button" class="btn btn-default btn-xs twitter-btn-action-reply" ng-disabled="t.author.id == currentUser.id" ng-click="replyToTweet(t)">
                 <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
             </button>
         </div>

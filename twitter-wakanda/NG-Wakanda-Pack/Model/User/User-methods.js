@@ -85,3 +85,22 @@ model.User.methods.register = function (user) {
 };
 model.User.methods.register.scope = "public";
 model.User.methods.performProfileUpdate.scope = "public";
+
+
+model.User.methods.getWithId = function(userId) {
+    dsUser = ds.User(userId);
+
+    if (dsUser == null)
+        return {error: 404, message: "User not found"};
+
+    return {
+        id: dsUser.ID,
+        login: dsUser.login,
+        email: dsUser.email,
+        cleanName: dsUser.cleanName,
+        description: dsUser.description,
+        nbFollows: dsUser.follows.count(),
+        nbFollowers: dsUser.followers.count()
+    };
+};
+model.User.methods.getWithId.scope = "public";

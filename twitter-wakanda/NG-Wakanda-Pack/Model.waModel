@@ -239,6 +239,13 @@
 					"userDefined" : true
 				},
 				{
+					"name" : "profileTweetFeed",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Tweet.methods.profileTweetFeed",
+					"userDefined" : true
+				},
+				{
 					"name" : "retweet",
 					"applyTo" : "dataClass",
 					"scope" : "public",
@@ -362,6 +369,13 @@
 			],
 			"methods" : 
 			[
+				{
+					"name" : "getWithId",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.getWithId",
+					"userDefined" : true
+				},
 				{
 					"name" : "performLogin",
 					"applyTo" : "dataClass",

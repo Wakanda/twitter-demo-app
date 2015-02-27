@@ -392,6 +392,20 @@
 					"userDefined" : true
 				},
 				{
+					"name" : "followersForUserId",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.followersForUserId",
+					"userDefined" : true
+				},
+				{
+					"name" : "followingForUserId",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.followingForUserId",
+					"userDefined" : true
+				},
+				{
 					"name" : "getWithId",
 					"applyTo" : "dataClass",
 					"scope" : "public",

@@ -46,5 +46,19 @@ angular.module('twitter').
 
             return defered.promise;
         };
+
+        this.search = function (queryString, readerId) {
+            var defered = $q.defer();
+
+            $wakanda.init().then(function (ds) {
+                readerId = parseInt(readerId);
+
+                var tweets = ds.Tweet.search(queryString, readerId);
+
+                defered.resolve(tweets);
+            });
+
+            return defered.promise;
+        };
     }
 );

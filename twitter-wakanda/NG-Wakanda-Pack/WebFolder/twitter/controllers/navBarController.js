@@ -6,6 +6,7 @@ angular.module('twitter').
     function ($scope, AuthenticationService, $state, $rootScope, TweetService) {
 
         $scope.tweetText = '';
+        $scope.searchQuery = '';
         $scope.currentUser = AuthenticationService.getCurrentUser();
 
         $scope.$watch(function () {
@@ -31,5 +32,12 @@ angular.module('twitter').
             AuthenticationService.logout();
             $rootScope.loggedIn = false;
             $state.go('login');
+        };
+
+        $scope.search = function () {
+            if ($scope.searchQuery && $scope.searchQuery.length > 0) {
+                $state.go('search', {query: $scope.searchQuery});
+                $scope.searchQuery = '';
+            }
         };
     });

@@ -197,7 +197,8 @@
 					"name" : "text",
 					"kind" : "storage",
 					"scope" : "public",
-					"type" : "string"
+					"type" : "string",
+					"indexKind" : "keywords"
 				},
 				{
 					"name" : "date",
@@ -250,6 +251,13 @@
 					"applyTo" : "dataClass",
 					"scope" : "public",
 					"from" : "$mainModel.Tweet.methods.retweet",
+					"userDefined" : true
+				},
+				{
+					"name" : "search",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.Tweet.methods.search",
 					"userDefined" : true
 				}
 			],
@@ -377,6 +385,13 @@
 			"methods" : 
 			[
 				{
+					"name" : "addUserSubscription",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.addUserSubscription",
+					"userDefined" : true
+				},
+				{
 					"name" : "getWithId",
 					"applyTo" : "dataClass",
 					"scope" : "public",
@@ -423,6 +438,13 @@
 					"applyTo" : "dataClass",
 					"scope" : "public",
 					"from" : "$mainModel.User.methods.register",
+					"userDefined" : true
+				},
+				{
+					"name" : "removeUserSubscription",
+					"applyTo" : "dataClass",
+					"scope" : "public",
+					"from" : "$mainModel.User.methods.removeUserSubscription",
 					"userDefined" : true
 				},
 				{

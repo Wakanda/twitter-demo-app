@@ -25,12 +25,14 @@
                             <a href="#">Activity Feed</a>
                         </li>
                     </ul>
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-5 col-md-5">
                         <form class="navbar-form" ng-submit="postTweet()">
                             <div class="input-group">
-                                <input ng-model="$parent.tweetText" type="text" class="form-control" size="40" maxlength="140" placeholder="Post a tweet">
+                                <input ng-model="$parent.tweetText" type="text" class="form-control" size="40"
+                                       maxlength="140" placeholder="Post a tweet">
+
                                 <div class="input-group-btn">
-                                    <button class="btn btn-primary" type="submit">Tweet</button>
+                                    <button class="btn btn-primary" type="submit" ng-disabled="!$parent.tweetText || $parent.tweetText.length == 0">Tweet</button>
                                 </div>
                             </div>
                             <div class="checkbox text-muted" ng-show="$parent.tweetText.length > 0">
@@ -38,9 +40,29 @@
                             </div>
                         </form>
                     </div>
+                    <div class="col-sm-3 col-md-3">
+                        <form class="navbar-form form-inline" ng-submit="search()">
+                            <div class="input-group">
+                                <input ng-model="$parent.searchQuery" type="text" class="form-control"
+                                       placeholder="Search something..."/>
+
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" ng-disabled="!$parent.searchQuery || $parent.searchQuery.length == 0">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <div class="nav navbar-nav navbar-right">
-                        <a ng-href="#/profile/{{currentUser.id}}"><button type="button" class="btn btn-primary navbar-btn navbar-btn-highlighted">Profile</button></a>
-                        <button type="button" class="btn btn-default navbar-btn navbar-btn-discret" ng-click="performLogout()">Logout</button>
+
+                        <a ng-href="#/profile/{{currentUser.id}}">
+                            <button type="button" class="btn btn-primary navbar-btn navbar-btn-highlighted">Profile
+                            </button>
+                        </a>
+                        <button type="button" class="btn btn-default navbar-btn navbar-btn-discret"
+                                ng-click="performLogout()">Logout
+                        </button>
                     </div>
                 </div>
             </div>

@@ -52,6 +52,14 @@ app.config(['$stateProvider', '$urlRouterProvider',
                 resolve: {},
                 authenticate: false
             });
+        $stateProvider
+            .state('search', {
+                url: '/search?query',
+                templateUrl: 'views/search.html',
+                controller: 'SearchController',
+                resolve: {},
+                authenticate: true
+        });
     }]);
 
 app.run(function ($rootScope, $state, AuthenticationService, editableOptions) {

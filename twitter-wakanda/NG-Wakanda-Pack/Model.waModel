@@ -256,7 +256,7 @@
 				{
 					"name" : "search",
 					"applyTo" : "dataClass",
-					"scope" : "publicOnServer",
+					"scope" : "public",
 					"from" : "$mainModel.Tweet.methods.search",
 					"userDefined" : true
 				}

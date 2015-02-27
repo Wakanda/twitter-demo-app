@@ -125,10 +125,12 @@ model.Tweet.methods.profileTweetFeed.scope = "public";
 
 model.Tweet.methods.search = function(queryString, readerId) {
 	var tweets = ds.Tweet.query('text %% :1', queryString);
-	var tweetsArraY = [];
+	var tweetsArray = [];
 	
 	tweets.forEach(function (t) {
+		var a = t.author;
 		tweetsArray.push(dsTweetToPublic(t, readerId));
 	});
 	return tweetsArray;
 };
+model.Tweet.methods.search.scope = "public";

@@ -46,6 +46,22 @@ app.config(['$stateProvider', '$urlRouterProvider',
                 authenticate: true
             });
         $stateProvider
+            .state('followers', {
+                url: '/list/:type/:userId',
+                templateUrl: 'views/user-list.html',
+                controller: 'FollowDisplayController',
+                resolve: {},
+                authenticate: true
+            });
+        $stateProvider
+            .state('following', {
+                url: '/list/:type/:userId',
+                templateUrl: 'views/user-list.html',
+                controller: 'FollowDisplayController',
+                resolve: {},
+                authenticate: true
+            });
+        $stateProvider
             .state('404', {
                 url: '/notfound',
                 templateUrl: 'views/404.html',

@@ -13,7 +13,14 @@
             <a href="#" editable-text="user.description" ng-if="isProfileEditable && (!user.description || user.description.length == 0)">Enter a description !</a>
             <div ng-if="isProfileEditable == false">{{user.description}}</div>
         </h5>
-        <p><strong class="primary-color">{{user.nbFollowers}}</strong> followers | <strong class="primary-color">{{user.nbFollows}}</strong> following</p>
+        <p>
+            <a ng-href="#/list/followers/{{user.id}}">
+                <strong class="primary-color">{{user.nbFollowers}}</strong> followers
+            </a> |
+            <a ng-href="#/list/following/{{user.id}}">
+                <strong class="primary-color">{{user.nbFollows}}</strong> following
+            </a>
+        </p>
         <button class="btn btn-primary" ng-if="!isProfileEditable && !user.isCurrentUserFollowing" ng-click="subscribe()">S'abonner</button>
         <button class="btn btn-default" ng-if="!isProfileEditable && user.isCurrentUserFollowing" ng-click="unsubscribe()">Se désabonner</button>
     </div>

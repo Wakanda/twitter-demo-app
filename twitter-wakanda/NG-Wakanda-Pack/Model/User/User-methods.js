@@ -154,3 +154,30 @@ model.User.methods.removeUserSubscription = function(fromUserId, toUserId) {
 	return {code: 200, message: "Subscription removed."};
 };
 model.User.methods.removeUserSubscription.scope = "public";
+
+
+model.User.methods.followersForUserId = function(userId) {
+	dsUser = ds.User(userId);
+	var followers = dsUser.followers;
+	
+	var usersArray = [];
+    followers.forEach(function (t) {
+        usersArray.push(dsUserToPublic(t, sessionStorage.currentUser.ID));
+    });
+	
+	return usersArray;
+};
+model.User.methods.followersForUserId.scope = "public";
+
+model.User.methods.followingForUserId = function(userId) {
+	dsUser = ds.User(userId);
+	var following = dsUser.follows;
+		
+	var usersArray = [];
+    following.forEach(function (t) {
+        usersArray.push(dsUserToPublic(t, sessionStorage.currentUser.ID));
+    });
+	
+	return usersArray;
+};
+model.User.methods.followingForUserId.scope = "public";

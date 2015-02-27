@@ -1,0 +1,20 @@
+<div class="row" ng-repeat="user in users">
+    <div class="col-lg-2 col-lg-offset-3 text-right">
+        <img src="http://www.placehold.it/35x35">
+    </div>
+    <div class="col-lg-4">
+        <p>
+            <a ng-href="#/profile/{{user.id}}"><strong>{{user.cleanName}}</strong><br /><i>@{{user.login}}</i></a>
+        </p>
+        <p>
+            {{user.description}}
+        </p>
+        <p>
+            <a ng-href="#/list/followers/{{user.id}}">{{user.nbFollowers}} followers</a> | <a ng-href="#/list/following/{{user.id}}">{{user.nbFollows}} following</a>
+        </p>
+    </div>
+</div>
+
+<br />
+
+<tweet-feed tweets="tweets"></tweet-feed>

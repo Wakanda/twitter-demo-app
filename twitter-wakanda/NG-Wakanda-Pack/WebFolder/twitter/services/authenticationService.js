@@ -114,7 +114,6 @@ angular.module('twitter').
         };
 
         this.updateProfilePicture = function(file) {
-            console.log("File: ", file);
             var defered = $q.defer();
             $wakanda.init().then(
                 function (ds) {
@@ -147,6 +146,36 @@ angular.module('twitter').
             $wakanda.init().then(function (ds) {
                 ds.User.removeUserSubscription(parseInt(getCurrentUser().id), parseInt(toUserId));
             });
+        };
+
+        this.followersForUserId = function(userId) {
+            var defered = $q.defer();
+            $wakanda.init().then(
+                function (ds) {
+                    var users = ds.User.followersForUserId(userId);
+                    console.log("Users found as followers: ", users);
+                    defered.resolve(users);
+                }, function(error) {
+                    console.log('Error: ', error);
+                    defered.reject(error);
+                }
+            );
+            return defered.promise;
+        };
+
+        this.followingForUserId = function(userId) {
+            var defered = $q.defer();
+            $wakanda.init().then(
+                function (ds) {
+                    var users = ds.User.followingForUserId(userId);
+                    console.log("Users found as followers: ", users);
+                    defered.resolve(users);
+                }, function(error) {
+                    console.log('Error: ', error);
+                    defered.reject(error);
+                }
+            );
+            return defered.promise;
         };
 
         this.getCurrentUser = getCurrentUser;

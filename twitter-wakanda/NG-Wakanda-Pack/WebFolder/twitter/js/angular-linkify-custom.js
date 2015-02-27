@@ -30,7 +30,7 @@ angular.module('linkify')
             // Twitter
             if (type === 'twitter') {
                 _text = _text.replace(/(|\s)*@([\u00C0-\u1FFF\w]+)/g, '$1<a href="#/nprofile/$2">@$2</a>');
-                _text = _text.replace(/(^|\s)*#([\u00C0-\u1FFF\w]+)/g, '$1<a href="https://twitter.com/search?q=%23$2" target="_blank">#$2</a>');
+                _text = _text.replace(/(^|\s)*#([\u00C0-\u1FFF\w]+)/g, '$1<a href="#/search?query=%23$2">#$2</a>');
             }
 
 

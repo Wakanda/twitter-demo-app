@@ -37,6 +37,7 @@ angular.module('twitter').
         $scope.search = function () {
             if ($scope.searchQuery && $scope.searchQuery.length > 0) {
                 $state.go('search', {query: $scope.searchQuery});
+                $scope.searchQuery = '';
             }
         };
     });

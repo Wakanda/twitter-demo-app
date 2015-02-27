@@ -15,10 +15,12 @@ angular.module('twitter').
 
         if ($scope.queryString && $scope.queryString.length > 0) {
 
-            if ($scope.queryString[0] == '#')
-                $scope.queryString = $scope.queryString.slice(1);
+            var queryString = $scope.queryString;
 
-             TweetService.search($scope.queryString, currentUser.id).then(
+            if ($scope.queryString[0] == '#')
+                queryString = queryString.slice(1);
+
+             TweetService.search(queryString, currentUser.id).then(
                  function (tweets) {
                     $scope.tweets = tweets;
                  }

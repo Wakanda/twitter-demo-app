@@ -122,3 +122,13 @@ model.Tweet.methods.profileTweetFeed = function(userId, readerId) {
     return tweetsArray;
 };
 model.Tweet.methods.profileTweetFeed.scope = "public";
+
+model.Tweet.methods.search = function(queryString, readerId) {
+	var tweets = ds.Tweet.query('text %% :1', queryString);
+	var tweetsArraY = [];
+	
+	tweets.forEach(function (t) {
+		tweetsArray.push(dsTweetToPublic(t, readerId));
+	});
+	return tweetsArray;
+};

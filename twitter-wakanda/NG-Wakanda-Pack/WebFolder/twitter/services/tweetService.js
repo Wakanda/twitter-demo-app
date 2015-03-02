@@ -60,5 +60,20 @@ angular.module('twitter').
 
             return defered.promise;
         };
+
+        this.retweet = function (tweet, user) {
+            var defered = $q.defer();
+
+            $wakanda.init().then(function (ds) {
+                var rt = ds.Tweet.retweet(tweet, user);
+
+                if (rt.error)
+                    defered.reject(rt.message);
+                else
+                    defered.resolve(rt);
+            });
+
+            return defered.promise;
+        }
     }
 );

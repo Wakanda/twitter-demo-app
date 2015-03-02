@@ -12,6 +12,7 @@
         <div class="col-lg-4 vbottomoffset10">
             <button type="button" class="btn btn-default btn-xs twitter-btn-action-retweet"
                     ng-class="{'twitter-btn-action-retweeted':t.hasBeenRt}"
+                    ng-click="performRetweet(t)"
                     ng-disabled="t.author.id == currentUser.id || t.hasBeenRt">
                 <span class="glyphicon glyphicon-retweet" aria-hidden="true"></span> {{t.nbRetweet}}
             </button>

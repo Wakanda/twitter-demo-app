@@ -50,7 +50,7 @@ model.Tweet.methods.retweet = function(tweet, user) {
 	retweet.save();
 	
 	return {
-		id: rewteet.ID,
+		id: retweet.ID,
 		tweetId: dsTweet.ID,
 		userId: dsUser.ID
 	};

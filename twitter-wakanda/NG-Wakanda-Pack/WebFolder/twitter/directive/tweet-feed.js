@@ -17,6 +17,17 @@ angular.module('twitter')
 
         $scope.currentUser = AuthenticationService.getCurrentUser();
 
+        $scope.performRetweet = function (tweet) {
+            if (!tweet.hasBeenRt) {
+                TweetService.retweet(tweet, $scope.currentUser).then(
+                    function (rt) {
+                        tweet.hasBeenRt = true;
+                        tweet.nbRetweet++;
+                    }
+                );
+            }
+        };
+
         $scope.replyToTweet = function (tweet) {
             var modalInstance = $modal.open({
                 templateUrl: 'views/modal/modal-reply.html',

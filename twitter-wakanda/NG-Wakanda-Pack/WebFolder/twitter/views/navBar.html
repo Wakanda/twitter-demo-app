@@ -20,12 +20,7 @@
                     </ul>
                 </div>
                 <div ng-if="loggedIn">
-                    <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="#">Activity Feed</a>
-                        </li>
-                    </ul>
-                    <div class="col-sm-5 col-md-5">
+                    <div class="col-sm-4 col-md-4">
                         <form class="navbar-form" ng-submit="postTweet()">
                             <div class="input-group">
                                 <input ng-model="$parent.tweetText" type="text" class="form-control" size="40"
@@ -54,8 +49,8 @@
                             </div>
                         </form>
                     </div>
-                    <div class="nav navbar-nav navbar-right">
-
+                    <!--<div class="nav navbar-nav navbar-right">-->
+                    <div class="col-sm-3 col-md-3">
                         <a ng-href="#/profile/{{currentUser.id}}">
                             <button type="button" class="btn btn-primary navbar-btn navbar-btn-highlighted">Profile
                             </button>
